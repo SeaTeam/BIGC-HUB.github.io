@@ -88,7 +88,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-tanChuang('你好，是否知道个人档案密钥','123')
+// tanChuang('你好，是否知道个人档案密钥','123')
 
 var ckXian = function () {
     var body = document.querySelector('body')
