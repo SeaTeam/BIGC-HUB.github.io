@@ -43,6 +43,7 @@ var tanChuang = function(title, mima) {
                 font-size: 130%;
                 text-align: center;
                 font-weight: 400;
+                margin: 0 auto;
             }
             /* 按钮 */
             .tan-buttons {
@@ -80,7 +81,10 @@ var tanChuang = function(title, mima) {
         }
     })
     $('#id-tan-Cancel').on('click', function() {
-        $('#id-tan-input')[0].placeholder = '123'
+        $('.input-mi').each( function(i,e) {
+            e.type='password'
+        })
+        $('.tanChuang').remove()
     })
     $('#id-tan-input').on('keydown', function() {
         if (event.key === 'Enter') {
@@ -88,7 +92,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-tanChuang('你好，是否知道个人档案密钥','123')
+tanChuang('你好，是否知道个人档案密钥','1207')
 
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -210,3 +214,5 @@ var comment = function(comments, id) {
 // 添加 评论 comments 模块
 init_comments()
 comment(comments, id)
+
+log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
