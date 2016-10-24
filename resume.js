@@ -88,7 +88,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-// tanChuang('你好，是否知道个人档案密钥','123')
+tanChuang('你好，是否知道个人档案密钥','123')
 
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -208,5 +208,5 @@ var comment = function(comments, id) {
     }
 }
 // 添加 评论 comments 模块
-// init_comments()
-// comment(comments, id)
+init_comments()
+comment(comments, id)
