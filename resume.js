@@ -215,11 +215,11 @@ var comment = function(comments, id) {
 init_comments()
 comment(comments, id)
 
-var music = function() {
+var music = function(button,url) {
     $('head').prepend(`
-        <audio id="id-BGM" src="ku/BGM.mp3" autoplay="autoplay"></audio>`)
+        <audio id="id-BGM" src=${url} autoplay="autoplay"></audio>`)
     // 添加 BGM
-    $('#id-home').on('click', function(event){
+    $(button).on('click', function(event){
         var music = document.querySelector('#id-BGM')
         var bo = $('#id-player')
         if (bo.hasClass("fa-pause")) {
@@ -234,6 +234,6 @@ var music = function() {
     })
     // 绑定 BGM 开关
 }
-music()
+music('#id-home',"ku/BGM.mp3")
 
 log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
