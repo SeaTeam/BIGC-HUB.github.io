@@ -74,6 +74,9 @@ var tanChuang = function(title, mima) {
     $('#id-tan-OK').on('click', function() {
         let value = $('#id-tan-input')[0].value
         if (value === mima) {
+            $('.input-mi').each( function(i,e) {
+                e.type='text'
+            })
             $('.tanChuang').remove()
         } else {
             $('#id-tan-input')[0].value = ''
@@ -81,9 +84,6 @@ var tanChuang = function(title, mima) {
         }
     })
     $('#id-tan-Cancel').on('click', function() {
-        $('.input-mi').each( function(i,e) {
-            e.type='password'
-        })
         $('.tanChuang').remove()
     })
     $('#id-tan-input').on('keydown', function() {
@@ -92,7 +92,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-tanChuang('你好，是否知道个人档案密钥','1207')
+// tanChuang('你好，是否知道个人档案密钥','1207')
 
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -214,5 +214,26 @@ var comment = function(comments, id) {
 // 添加 评论 comments 模块
 init_comments()
 comment(comments, id)
+
+var music = function() {
+    $('head').prepend(`
+        <audio id="id-BGM" src="ku/BGM.mp3" autoplay="autoplay"></audio>`)
+    // 添加 BGM
+    $('#id-home').on('click', function(event){
+        var music = document.querySelector('#id-BGM')
+        var bo = $('#id-player')
+        if (bo.hasClass("fa-pause")) {
+            music.pause()
+            bo.removeClass( "fa-pause" )
+            bo.addClass( "fa-play" )
+        } else if (bo.hasClass("fa-play" )) {
+            music.play()
+            bo.removeClass( "fa-play" )
+            bo.addClass( "fa-pause" )
+        }
+    })
+    // 绑定 BGM 开关
+}
+// music()
 
 log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
