@@ -2,7 +2,7 @@ var GuaSlide = function(element, images) {
     var style = `
             <style>
                 .GuaSlide {
-                    margin: auto;
+                    margin: 0 auto;
                     /* 边框 */
                     width: 730px;
                     height: 454px;
@@ -70,7 +70,7 @@ var GuaSlide = function(element, images) {
                 }
             </style>`
     var html = `
-            <hr>
+            <span style="display: block; height: 1em"></span>
             <div class="GuaSlide">
                 <div class="img">
                     <img class="imgs" src=${images[0]} >
@@ -90,7 +90,8 @@ var GuaSlide = function(element, images) {
                     <button class="imgs-button" type="button" data-id='5'> 5 </button>
                     <button class="imgs-button" type="button" data-id='6'> 6 </button>
                 </div>
-            </div>`
+            </div>
+            <span style="display: block; height: 1em"></span>`
     $(element).append(style)
     $(element).append(html)
     $( '.img' ).on( 'mouseover', function() {

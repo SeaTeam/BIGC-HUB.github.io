@@ -327,11 +327,11 @@ var music = function(button,url) {
 }
 // 背景音乐
 var __init__ = function() {
-    // tanChuang('你好，是否知道个人档案密钥','1207')
+    tanChuang('你好，是否知道个人档案密钥','1207')
     resume()
     init_comments()
     comment(comments, id)
-    // music('#id-home',"ku/BGM.mp3")
+    music('#id-home',"ku/BGM.mp3")
     log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
 }
 
