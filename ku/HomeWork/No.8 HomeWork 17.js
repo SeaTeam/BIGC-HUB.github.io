@@ -17,21 +17,26 @@
 // 作业 17
 
 var chushi = function( ) {
-    var html = `<div class="content">
-        <span style="display: block; height: 10px"></span>
-        <div class="user_name">
-            用户名<br><input id="id-input-user-name" type="text" value="">
-        </div>
-        <div class="user_password">
-            密　码<br><input id="id-input-user_password" type="password" >
-        </div>
-        <div class="user_login">
-            <button type="button" name="button">　登　陆　</button>
-        </div>
-        <span id="id-OK" style="display: block; height: 10px"></span>
-    </div>`
-    var omg = document.querySelector ( ".No-17" )
-    omg.insertAdjacentHTML( 'afterend', html )
+    var html = `
+        <div class="content">
+            <div class="works"><h2>Works - 用户名检查器</h2></div>
+            字母首位；只能包含 字母、数字、下划线；
+            以字母或数字结尾；最少长度 2 最大长度 10 <br><br>
+            <div class="user_name pure-form">
+                用户名<br><input style="text-align:center;" id="id-input-user-name" type="text" value="">
+            </div>
+            <div class="user_password pure-form">
+                密　码<br><input style="text-align:center;" id="id-input-user_password" type="password" >
+            </div>
+            <div class="user_login">
+                <br>
+                <button class="pure-button pure-button-primary" type="button" name="button">　登　陆　</button>
+            </div>
+            <span id="id-OK" style="display: block; height: 2em"></span>
+            <span style="display: block; height: 3em"></span>
+            </div>`
+    var omg = document.querySelector ( ".HomeWork" )
+    omg.insertAdjacentHTML( 'beforeend', html )
 }
 //初始化
 var isokUesr = function( ) {
@@ -77,9 +82,9 @@ var isokUesr = function( ) {
             before.remove()
         }
         if ( result(event) ) {   //如果合格
-            omg.insertAdjacentHTML( 'afterend', `<div class="class-OK class-before" >用户名　合格</div>` )
+            omg.insertAdjacentHTML( 'afterend', `<div style="background:lightgreen; color:white" class=" class-before" >用户名　合格</div>` )
         } else {
-            omg.insertAdjacentHTML( 'afterend', `<div class="class-NO class-before" >用户名　不合格</div>` )
+            omg.insertAdjacentHTML( 'afterend', `<div style="background:red; color:white" class="class-NO class-before" >用户名　不合格</div>` )
         }
     }
     var userName = document.querySelector( "#id-input-user-name" )

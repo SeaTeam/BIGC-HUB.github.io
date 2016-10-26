@@ -1,15 +1,29 @@
 var chushi = function( ) {
-    var html = `<div class="notePad">
-        <div class="notePad_form tan-message pure-form">
-            <input  id="id-input-form" type="text" placeholder="今天做点什么" value="">
-            <button class="pure-button pure-button-primary" id="id-button-add" type="button" >　添加　</button>
-            <br><br>
-        </div>
-        <div id="id-div-cont">
+    var html = `
+        <div class="notePad">
+            <style>
+                .doneStyle {
+                    text-decoration: line-through;
+                    color: gray;
+                }
+                .button-small {
+                    font-size: 85%;
+                    background: rgb(66, 184, 221);
+                }
+            </style>
+            <span style="display: block; height: 3em"></span>
+            <div class="works"><h2>Works - 全功能Todo</h2></div>
+            <span style="display: block; height: 3em"></span>
+            <div class="notePad_form tan-message pure-form">
+                <input  id="id-input-form" type="text" placeholder="今天做点什么" value="">
+                <button class="pure-button pure-button-primary" id="id-button-add" type="button" >　添加　</button>
+                <br><br>
+            </div>
+            <div id="id-div-cont">
 
-        </div>
-        <span style="display: block; height: 5em"></span>
-    </div>`
+            </div>
+            <span style="display: block; height: 5em"></span>
+        </div>`
     var omg = document.querySelector ( ".HomeWork" )
     omg.insertAdjacentHTML( 'beforeend', html )
     if (localStorage.noteList === undefined || localStorage.noteList === '[]') {
@@ -213,5 +227,4 @@ var __init__ = function() {
     initNotes()    //读取数据
     bindEvents()   //绑定 事件
 }
-
 __init__()
