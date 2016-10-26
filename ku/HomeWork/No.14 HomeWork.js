@@ -146,12 +146,12 @@ var GuaSlide = function(element, images) {
     })
 }
 GuaSlide('.HomeWork',[
-    "imgs/GuaSlide/1.jpg",
-    "imgs/GuaSlide/2.jpg",
-    "imgs/GuaSlide/3.jpg",
-    "imgs/GuaSlide/4.jpg",
-    "imgs/GuaSlide/5.jpg",
-    "imgs/GuaSlide/6.jpg",
+    "../../imgs/GuaSlide/1.jpg",
+    "../../imgs/GuaSlide/2.jpg",
+    "../../imgs/GuaSlide/3.jpg",
+    "../../imgs/GuaSlide/4.jpg",
+    "../../imgs/GuaSlide/5.jpg",
+    "../../imgs/GuaSlide/6.jpg",
 ])
 
 // 本次作业纯属暖身, 随意

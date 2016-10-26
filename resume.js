@@ -92,6 +92,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
+tanChuang('你好，是否知道个人档案密钥','123')
 // 弹窗
 var resume = function() {
     var contact = `<!-- 联系方式 -->
@@ -124,11 +125,11 @@ var resume = function() {
                 毕业院校</h2>2011 ~ 2015 西安美术学院 本科<hr>
                 <h2><i class="fa fa-wrench" aria-hidden="true"></i>
                 项目与工作经验</h2>
-                <p>使用 WordPress 搭架个人网站 并多年维护</p>
+                <p>使用 WordPress 搭架个人网站 并多年维护</p><a name="Notes"></a>
                 <a target="_blank" href="http://bigc.cc"><i class="fa fa-wordpress fa-2x pull-left"></i>
                     http://bigc.cc<br>Version 4.5.4</a>
 
-                <p>使用 CMD MarkDown 编写学习手册 随时更新 急速查阅</p>
+                <p>使用 CMD MarkDown 编写学习手册 随时更新 急速查阅</p><a name="GitHub"></a>
                 <a target="_blank" href="https://www.zybuluo.com/iwangyang/note/519509"><i class="fa fa-edit fa-2x pull-left"></i>
                     萧瓜 HTML CSS Javascript<br>Python 3 小甲鱼 笔记</a>
 
@@ -136,9 +137,9 @@ var resume = function() {
                 <a target="_blank" href="https://github.com/BIGC-HUB"><i class="fa fa-github-alt fa-2x pull-left"></i>
                     https://github.com/<br>BIGC-HUB</a>
 
-                <p><li>实现 JD.com 首页轮播图</li></p>
+                <p><li>实现 JD.com <a target="_blank" href="ku/HomeWork/No.14 HomeWork.html">首页轮播图</a></li></p>
                 <p><li>实现 Weibo. 字符限制评论框 页尾</li></p>
-                <p><li>制作 TodoList 全功能</li></p>
+                <p><li>制作 TodoList 全功能 下方</li></p>
                 <p><li>制作 Chrome 参考线 插件 Ctrl + M</li></p>
                 <p><li>纯 JavaScript 编写本页</li></p>
 
@@ -189,6 +190,7 @@ var resume = function() {
     $('.cont').append(contact)
     $('.cont').append(resume)
 }
+resume()
 // 简历
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -238,6 +240,7 @@ var init_comments = function() {
             comments.reverse()
         }
 }
+init_comments()
 // 初始 评论 comments 数据
 var comment = function(comments, id) {
     var words = 140
@@ -305,6 +308,7 @@ var comment = function(comments, id) {
         $('.comment-text').after(temp)
     }
 }
+comment(comments, id)
 // 添加 评论 comments 模块
 var music = function(button,url) {
     $('head').prepend(`
@@ -325,14 +329,6 @@ var music = function(button,url) {
     })
     // 绑定 BGM 开关
 }
+music('#id-home',"ku/BGM.mp3")
 // 背景音乐
-var __init__ = function() {
-    tanChuang('你好，是否知道个人档案密钥','1207')
-    resume()
-    init_comments()
-    comment(comments, id)
-    music('#id-home',"ku/BGM.mp3")
-    log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
-}
-
-__init__()
+log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
