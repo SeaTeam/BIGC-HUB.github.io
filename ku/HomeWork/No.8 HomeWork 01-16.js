@@ -39,7 +39,7 @@
 //     }
 // }
 
-定义一个增强的 ensureEqual
+// 定义一个增强的 ensureEqual
 // var ensure = function( def, result, message ) {
 //     if ( def != result) {
 //         log(`异常————————————> ${message}`)

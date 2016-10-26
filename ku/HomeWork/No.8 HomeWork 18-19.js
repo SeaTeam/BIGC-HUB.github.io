@@ -1,18 +1,20 @@
 var chushi = function( ) {
     var html = `<div class="notePad">
-        <span style="display: block; height: 30px"></span>
-        <div class="notePad_form">
+        <span style="display: block; height: 3em"></span>
+        <div class="notePad_form tan-message pure-form">
             <input  id="id-input-form" type="text" placeholder="今天做点什么" value="">
-            <button id="id-button-add" type="button" >　Add　</button>
+            <button class="pure-button pure-button-primary" id="id-button-add" type="button" >　添加　</button>
+            <br><br>
         </div>
         <div id="id-div-cont">
 
         </div>
+        <span style="display: block; height: 5em"></span>
     </div>`
-    var omg = document.querySelector ( ".top" )
-    omg.insertAdjacentHTML( 'afterend', html )
+    var omg = document.querySelector ( ".HomeWork" )
+    omg.insertAdjacentHTML( 'beforeend', html )
     if (localStorage.noteList === undefined || localStorage.noteList === '[]') {
-        localStorage.noteList = JSON.stringify([{"value":"测试 喝水","time":"09月10日 10时53分10秒"},{"value":"测试 吃饭","time":"02月17日 14时09分39秒"}])
+        localStorage.noteList = JSON.stringify([])
     }
 }
 var bindEventAdd = function() {
@@ -24,12 +26,11 @@ var bindEventAdd = function() {
             var Time = nowTime()
             var temp =
             `<div class="notePad_one">
-                <span   class="change"contenteditable="false">${Time}</span>
-                <button class="done">完成</button>
-                <button class="del" >删除</button>
-                <button class="bianji">编辑</button>
-                <br>
-                <span   class="change"contenteditable="false">${input_Value}</span>
+                <hr><span   class="change"contenteditable="false">${Time}</span>
+                <span style="display:block; margin: 1.3em auto" class="change"contenteditable="false">${input_Value}</span>
+                <button class="button-small pure-button pure-button-primary done">完成</button>
+                <button class="button-small pure-button pure-button-primary del" >删除</button>
+                <button class="button-small pure-button pure-button-primary bianji">编辑</button>
             </div>`
             // 获得 包含 value 的 html 代码
             notepad_Cont.insertAdjacentHTML( 'beforeend', temp )
@@ -82,6 +83,7 @@ var bindEventBianji = function() {
         if ( event.target.classList.contains( 'bianji' ) ) {
             // 触发 bianji
             var span = event.target.parentElement.children[2]
+            log(event.target.parentElement.children)
             // 获取 元素 span [ ]里面是下标 在temp里数
             span.setAttribute('contenteditable', 'true')
             // 设置 span 可编辑
@@ -155,15 +157,21 @@ var ClassOFF = function( Fu, CalssName ) {
     }
 }
 //Class开关
-var nowTime = function() {
-    var d = new Date()
-    var month = d.getMonth() + 1
-    var date = d.getDate()
-    var hours = d.getHours()
-    var minutes = d.getMinutes()
-    var seconds = d.getSeconds()
-    var timeString = `${month}月${date}日 ${hours}时${minutes}分${seconds}秒`
-    return timeString
+var nowTime = function(z) {
+    if (z === undefined) { z = new Date() }
+    var x = z.toString()
+    var zh     = '天一二三四五六'
+    var Year   = x.slice(10,15)
+    var Month  = z.getMonth() + 1
+    var Day    = x.slice(8,10)
+    var Hour   = x.slice(16,18)
+    var Minute = x.slice(19,21)
+    var Second = x.slice(22,24)
+    var Week   = zh[ z.getDay() ]
+    if ( String(Month).length === 1) {
+        Month = '0' + Month
+    }
+    return `${Month}月${Day}日 ${Hour}时${Minute}分${Second}秒 星期${Week}`
 }
 //返回 现在时间
 var save = function() {
@@ -180,12 +188,11 @@ var AddNote = function(note) {
     var input_Value = note['value']
     var temp =
     `<div class="notePad_one">
-        <span   class="change"contenteditable="false">${Time}</span>
-        <button class="done">完成</button>
-        <button class="del" >删除</button>
-        <button class="bianji">编辑</button>
-        <br>
-        <span   class="change"contenteditable="false">${input_Value}</span>
+        <hr><span   class="change"contenteditable="false">${Time}</span>
+        <span style="display:block; margin: 1.3em auto" class="change"contenteditable="false">${input_Value}</span>
+        <button class="button-small pure-button pure-button-primary done">完成</button>
+        <button class="button-small pure-button pure-button-primary del" >删除</button>
+        <button class="button-small pure-button pure-button-primary bianji">编辑</button>
     </div>`
     // 获得 包含 value 的 html 代码
     notepad_Cont.insertAdjacentHTML( 'beforeend', temp )
