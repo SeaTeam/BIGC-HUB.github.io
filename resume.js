@@ -137,7 +137,8 @@ var resume = function() {
                     https://github.com/<br>BIGC-HUB</a>
 
                 <p><li>实现 JD.com 首页轮播图</li></p>
-                <p><li>实现 Weibo. 限制字数评论框</li></p>
+                <p><li>实现 Weibo. 字符限制评论框 页尾</li></p>
+                <p><li>制作 TodoList 全功能</li></p>
                 <p><li>制作 Chrome 参考线 插件 Ctrl + M</li></p>
                 <p><li>纯 JavaScript 编写本页</li></p>
 
@@ -326,11 +327,11 @@ var music = function(button,url) {
 }
 // 背景音乐
 var __init__ = function() {
-    tanChuang('你好，是否知道个人档案密钥','1207')
+    // tanChuang('你好，是否知道个人档案密钥','1207')
     resume()
     init_comments()
     comment(comments, id)
-    music('#id-home',"ku/BGM.mp3")
+    // music('#id-home',"ku/BGM.mp3")
     log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
 }
 

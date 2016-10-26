@@ -1,6 +1,5 @@
 var chushi = function( ) {
     var html = `<div class="notePad">
-        <span style="display: block; height: 3em"></span>
         <div class="notePad_form tan-message pure-form">
             <input  id="id-input-form" type="text" placeholder="今天做点什么" value="">
             <button class="pure-button pure-button-primary" id="id-button-add" type="button" >　添加　</button>
@@ -14,7 +13,7 @@ var chushi = function( ) {
     var omg = document.querySelector ( ".HomeWork" )
     omg.insertAdjacentHTML( 'beforeend', html )
     if (localStorage.noteList === undefined || localStorage.noteList === '[]') {
-        localStorage.noteList = JSON.stringify([])
+        localStorage.noteList = JSON.stringify([{time:'03月10日 13时59分17秒 星期天',value:'纪念日'}])
     }
 }
 var bindEventAdd = function() {
