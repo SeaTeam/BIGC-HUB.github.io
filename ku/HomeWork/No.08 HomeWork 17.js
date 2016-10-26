@@ -23,10 +23,10 @@ var chushi = function( ) {
             字母首位；只能包含 字母、数字、下划线；
             以字母或数字结尾；最少长度 2 最大长度 10 <br><br>
             <div class="user_name pure-form">
-                用户名<br><input style="text-align:center;" id="id-input-user-name" type="text" value="">
+                用户名<br><input style="display:inline-block;text-align:center;" id="id-input-user-name" type="text" value="">
             </div>
             <div class="user_password pure-form">
-                密　码<br><input style="text-align:center;" id="id-input-user_password" type="password" >
+                密　码<br><input style="display:inline-block; text-align:center;" id="id-input-user_password" type="password" >
             </div>
             <div class="user_login">
                 <br>
@@ -42,6 +42,10 @@ var chushi = function( ) {
 var isokUesr = function( ) {
     var result = function(event) {
         var value = event.target.value
+        if (value === '') {
+            value = '1xiaomi-mix'
+        }
+        log('用户 ',value)
         var rule1 = value[0].search( /[A-Z]|[a-z]/img )
         // 1，第一位是字母
         var rule2 = function() {
@@ -75,7 +79,7 @@ var isokUesr = function( ) {
         } return result
     }
     //测试函数
-    var Event = function( ) {
+    var Event = function(event) {
         var omg = document.querySelector( '#id-OK' )
         var before = document.querySelector( '.class-before' )
         if ( before !== null ) { //前情提要
