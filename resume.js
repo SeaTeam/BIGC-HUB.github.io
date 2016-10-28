@@ -92,7 +92,7 @@ var tanChuang = function(title, mima) {
         }
     })
 }
-tanChuang('你好，是否知道个人档案密钥','123')
+// tanChuang('你好，是否知道个人档案密钥','123')
 // 弹窗
 var ckXian = function () {
     var body = document.querySelector('body')
@@ -231,6 +231,7 @@ var music = function(button,url) {
     })
     // 绑定 BGM 开关
 }
-// music('#id-home',"ku/BGM.mp3")
+music('#id-home',"ku/BGM.mp3")
+
 // 背景音乐
 log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
