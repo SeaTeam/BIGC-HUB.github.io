@@ -182,6 +182,8 @@ var music = function(mList, button) {
             if (Number(e.id) === id) {
                 player.src = `music/${id}.${e.type}`
                 player.dataset.id = id
+                $('#id-BGM-name').text(e.name)
+                $('#id-BGM-artist').text(e.artist)
             }
         })
     })
@@ -195,6 +197,8 @@ var music = function(mList, button) {
     //         if (Number(e.id) === id) {
     //             player.src = `music/${id}.${e.type}`
     //             player.dataset.id = id
+    //             $('#id-BGM-name').text(e.name)
+    //             $('#id-BGM-artist').text(e.artist)
     //         }
     //     })
     // })
