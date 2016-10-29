@@ -1,82 +1,3 @@
-var music = function(button, url) {
-    // http://www.epooll.com/archives/422/ audio 标签事件
-    // http://seiyria.com/bootstrap-slider/ input range 样式
-    $(button).on('click', function(event) {
-        var music = document.querySelector('#id-BGM')
-        if (music.paused) {
-            music.play()
-        } else {
-            music.pause()
-        }
-    })
-    $('#id-BGM').on('pause', function() {
-        var play = $($('#id-BGM-play').children()[0])
-        play.removeClass("fa-pause-circle")
-        play.addClass("fa-play-circle")
-        var home = $('#id-player')
-        home.removeClass("fa-pause")
-        home.addClass("fa-play")
-    })
-    $('#id-BGM').on('play', function() {
-        var play = $($('#id-BGM-play').children()[0])
-        play.removeClass("fa-play-circle")
-        play.addClass("fa-pause-circle")
-        var home = $('#id-player')
-        home.removeClass("fa-play")
-        home.addClass("fa-pause")
-    })
-    $('#id-BGM')[0].pause()
-    // 绑定 BGM 开关
-}
-music('#id-home', "ku/BGM.mp3")
-// 背景音乐
-$('#id-BGM').on('playing', function(event) {
-    var chang = $('#id-BGM')[0].duration
-    $("#id-BGM-range")[0].max = chang
-    var m = String(Math.floor(chang / 60))
-    var s = String(Math.floor(chang % 60))
-    if (m.length === 1) {
-        m = '0' + m
-    }
-    if (s.length === 1) {
-        s = '0' + s
-    }
-    $('#id-BGM-end').text(`${m}:${s}`)
-    var id = event.target.dataset.id
-    $('music').each( function(i, e) {
-        if (e.dataset.id === id) {
-            $(e).addClass('playing')
-        } else {
-            $(e).removeClass('playing')
-        }
-    })
-})
-// 当音乐开始播放 设置进度条最大长度 和 最大时间 和 当前播放
-$('#id-BGM').on('timeupdate', function(e) {
-        var now = e.target.currentTime
-        var m = String(Math.floor(now / 60))
-        var s = String(Math.floor(now % 60))
-        if (m.length === 1) {
-            m = '0' + m
-        }
-        if (s.length === 1) {
-            s = '0' + s
-        }
-        $('#id-BGM-now').text(`${m}:${s}`)
-        $("#id-BGM-range").slider( "value", now )
-    })
-// 进度条
-$("#id-BGM-volume").on('change', function(e) {
-        var volume = e.target.value / 100
-        $('#id-BGM')[0].volume = volume
-    })
-// 音量
-$("#id-BGM-range").on('click', function(e) {
-    var a = $(e.target).closest( '#id-BGM-range' )
-    var range = a.slider( "value")
-    $('#id-BGM')[0].currentTime = range
-})
-// 跳转 进度
 var mList = [{
         id: '0',
         type: 'mp3',
@@ -108,101 +29,180 @@ var mList = [{
         name: 'Is this love',
         artist: '逃跑计划'
 }, ]
-$(mList).each(function(i, e) {
-        var src = `music/${e.id}.${e.type}`
-        var name = `${e.name} - ${e.artist}`
-        var temp = `<div><music data-id=${e.id} data-src=${src} >${name}</music></div>`
-        $('#id-BGM-mList').append(temp)
-    })
-// 初始化 歌单
-$("#id-BGM-mList").on('click', 'music', function(event) {
-    var id  = event.target.dataset.id
-    var src = event.target.dataset.src
-    var player = $("#id-BGM")[0]
-    player.src = src
-    player.dataset.id  = id
-    $(mList).each( function(i ,e) {
-        if (e.id == id) {
-            $('#id-BGM-name').text(e.name)
-            $('#id-BGM-artist').text(e.artist)
+var music = function(mList, button) {
+    // http://www.epooll.com/archives/422/ audio 标签事件
+    // http://seiyria.com/bootstrap-slider/ input range 样式
+    $(mList).each(function(i, e) {
+            var src = `music/${e.id}.${e.type}`
+            var name = `${e.name} - ${e.artist}`
+            var temp = `<div><music data-id=${e.id} data-src=${src} >${name}</music></div>`
+            $('#id-BGM-mList').append(temp)
+        })
+    // 初始化 歌单
+    $(button).on('click', function(event) {
+        var music = document.querySelector('#id-BGM')
+        if (music.paused) {
+            music.play()
+        } else {
+            music.pause()
         }
     })
-})
-// 歌单 点击 切歌
-$('#id-BGM-play').on('click', function(event) {
-    var music = document.querySelector('#id-BGM')
-    var bo = $('#id-BGM-play').children()
-    if (music.paused) {
-        music.play()
-    } else {
-        music.pause()
-    }
-})
-// 播放 按钮
-$('#id-BGM-next').on('click', function(event) {
-    var all = mList.length
-    var old = Number($('#id-BGM')[0].dataset.id) + all
-    var id = (old + 1) % all
-    $(mList).each( function(i ,e) {
-        if (Number(e.id) === id) {
-            var player = $("#id-BGM")[0]
-            player.src = `music/${id}.${e.type}`
-            player.dataset.id = id
+    $('#id-BGM').on('pause', function() {
+        var play = $($('#id-BGM-play').children()[0])
+        play.removeClass("fa-pause-circle")
+        play.addClass("fa-play-circle")
+        var home = $('#id-player')
+        home.removeClass("fa-pause")
+        home.addClass("fa-play")
+    })
+    $('#id-BGM').on('play', function() {
+        var play = $($('#id-BGM-play').children()[0])
+        play.removeClass("fa-play-circle")
+        play.addClass("fa-pause-circle")
+        var home = $('#id-player')
+        home.removeClass("fa-play")
+        home.addClass("fa-pause")
+    })
+    // 绑定 BGM 开关
+    $('#id-BGM')[0].pause()
+    $('#id-BGM').on('playing', function(event) {
+        var chang = $('#id-BGM')[0].duration
+        $("#id-BGM-range")[0].max = chang
+        var m = String(Math.floor(chang / 60))
+        var s = String(Math.floor(chang % 60))
+        if (m.length === 1) {
+            m = '0' + m
+        }
+        if (s.length === 1) {
+            s = '0' + s
+        }
+        $('#id-BGM-end').text(`${m}:${s}`)
+        var id = event.target.dataset.id
+        $('music').each( function(i, e) {
+            if (e.dataset.id === id) {
+                $(e).addClass('playing')
+            } else {
+                $(e).removeClass('playing')
+            }
+        })
+    })
+    // 当音乐开始播放 设置进度条最大长度 和 最大时间 和 当前播放
+    $('#id-BGM').on('timeupdate', function(e) {
+            var now = e.target.currentTime
+            var m = String(Math.floor(now / 60))
+            var s = String(Math.floor(now % 60))
+            if (m.length === 1) {
+                m = '0' + m
+            }
+            if (s.length === 1) {
+                s = '0' + s
+            }
+            $('#id-BGM-now').text(`${m}:${s}`)
+            $("#id-BGM-range").slider( "value", now )
+        })
+    // 进度条
+    $("#id-BGM-volume").on('click', function(e) {
+        var volume = $("#id-BGM-volume").slider("value") / 100
+        $('#id-BGM')[0].volume = volume
+    })
+    // 音量
+    $("#id-BGM-range").on('click', function(e) {
+        var a = $(e.target).closest( '#id-BGM-range' )
+        var range = a.slider( "value")
+        $('#id-BGM')[0].currentTime = range
+    })
+    // 跳转 进度
+    $("#id-BGM-mList").on('click', 'music', function(event) {
+        var id  = event.target.dataset.id
+        var src = event.target.dataset.src
+        var player = $("#id-BGM")[0]
+        player.src = src
+        player.dataset.id  = id
+        $(mList).each( function(i ,e) {
+            if (e.id == id) {
+                $('#id-BGM-name').text(e.name)
+                $('#id-BGM-artist').text(e.artist)
+            }
+        })
+    })
+    // 歌单 点击 切歌
+    $('#id-BGM-play').on('click', function(event) {
+        var music = document.querySelector('#id-BGM')
+        var bo = $('#id-BGM-play').children()
+        if (music.paused) {
+            music.play()
+        } else {
+            music.pause()
         }
     })
-    $(mList).each( function(i ,e) {
-        if (e.id == id) {
-            $('#id-BGM-name').text(e.name)
-            $('#id-BGM-artist').text(e.artist)
-        }
+    // 播放 按钮
+    $('#id-BGM-next').on('click', function(event) {
+        var all = mList.length
+        var old = Number($('#id-BGM')[0].dataset.id) + all
+        var id = (old + 1) % all
+        $(mList).each( function(i ,e) {
+            if (Number(e.id) === id) {
+                var player = $("#id-BGM")[0]
+                player.src = `music/${id}.${e.type}`
+                player.dataset.id = id
+            }
+        })
+        $(mList).each( function(i ,e) {
+            if (e.id == id) {
+                $('#id-BGM-name').text(e.name)
+                $('#id-BGM-artist').text(e.artist)
+            }
+        })
     })
-})
-// 播放 下一曲
-$('#id-BGM-last').on('click', function(event) {
-    var all = mList.length
-    var old = Number($('#id-BGM')[0].dataset.id) + all
-    var id = (old - 1) % all
-    $(mList).each( function(i ,e) {
-        if (Number(e.id) === id) {
-            var player = $("#id-BGM")[0]
-            player.src = `music/${id}.${e.type}`
-            player.dataset.id = id
-        }
+    // 播放 下一曲
+    $('#id-BGM-last').on('click', function(event) {
+        var all = mList.length
+        var old = Number($('#id-BGM')[0].dataset.id) + all
+        var id = (old - 1) % all
+        $(mList).each( function(i ,e) {
+            if (Number(e.id) === id) {
+                var player = $("#id-BGM")[0]
+                player.src = `music/${id}.${e.type}`
+                player.dataset.id = id
+            }
+        })
+        $(mList).each( function(i ,e) {
+            if (e.id == id) {
+                $('#id-BGM-name').text(e.name)
+                $('#id-BGM-artist').text(e.artist)
+            }
+        })
     })
-    $(mList).each( function(i ,e) {
-        if (e.id == id) {
-            $('#id-BGM-name').text(e.name)
-            $('#id-BGM-artist').text(e.artist)
-        }
+    // 播放 上一曲
+    $('#id-BGM').on('ended', function(event) {
+        var player = $("#id-BGM")[0]
+        var all = mList.length
+        var old = Number(player.dataset.id) + all
+        var id  = (old + 1) % all
+        $(mList).each( function(i ,e) {
+            if (Number(e.id) === id) {
+                player.src = `music/${id}.${e.type}`
+                player.dataset.id = id
+            }
+        })
     })
-})
-// 播放 上一曲
-$('#id-BGM').on('ended', function(event) {
-    var player = $("#id-BGM")[0]
-    var all = mList.length
-    var old = Number(player.dataset.id) + all
-    var id  = (old + 1) % all
-    $(mList).each( function(i ,e) {
-        if (Number(e.id) === id) {
-            player.src = `music/${id}.${e.type}`
-            player.dataset.id = id
-        }
+    // 循环播放
+    $('#id-BGM').on('ended', function(event) {
+        var player = $("#id-BGM")[0]
+        var all = mList.length
+        var old = player.dataset.id
+        var id  = Math.floor(Math.random() * mList.length)
+        $(mList).each( function(i ,e) {
+            if (Number(e.id) === id) {
+                player.src = `music/${id}.${e.type}`
+                player.dataset.id = id
+            }
+        })
     })
-})
-// 循环播放
-$('#id-BGM').on('ended', function(event) {
-    var player = $("#id-BGM")[0]
-    var all = mList.length
-    var old = player.dataset.id
-    var id  = Math.floor(Math.random() * mList.length)
-    $(mList).each( function(i ,e) {
-        if (Number(e.id) === id) {
-            player.src = `music/${id}.${e.type}`
-            player.dataset.id = id
-        }
-    })
-})
-// 随机播放
+    // 随机播放
+}
+music(mList, '#id-home')
+// 背景音乐
 $( document ).ready(function() {
   function createHoverState (myobject){
     myobject.hover(function() {
@@ -222,13 +222,12 @@ $( document ).ready(function() {
     value: 0,
     animate: 1300
   });
-  // $("#blue").slider( "value", 100 );
+  // $("#blue").slider( "value", 100 )
   // $('.slider').each(function(index) {
   //   $(this).slider( "value", 75-index*(50/($('.slider').length-1)));
-  // });
-
-  createHoverState($(".slider a.ui-slider-handle"));
-
+  // })
+  createHoverState($(".slider a.ui-slider-handle"))
+  $("#id-BGM-volume").slider("value", 70)
 })
 // 进度条 样式
 
