@@ -67,7 +67,7 @@ var music = function(mList, button) {
     $('#id-BGM')[0].pause()
     $('#id-BGM').on('playing', function(event) {
         var chang = $('#id-BGM')[0].duration
-        $("#id-BGM-range")[0].max = chang
+        $("#id-BGM-range").slider({ max: chang })
         var m = String(Math.floor(chang / 60))
         var s = String(Math.floor(chang % 60))
         if (m.length === 1) {
@@ -86,9 +86,9 @@ var music = function(mList, button) {
             }
         })
     })
-    // 当音乐开始播放 设置进度条最大长度 和 最大时间 和 当前播放
-    $('#id-BGM').on('timeupdate', function(e) {
-            var now = e.target.currentTime
+    // 当音乐开始播放 设置进度条最大长度 最大时间 和 当前播放CSS
+    $('#id-BGM').on('timeupdate', function() {
+            var now = event.target.currentTime
             var m = String(Math.floor(now / 60))
             var s = String(Math.floor(now % 60))
             if (m.length === 1) {
@@ -98,20 +98,19 @@ var music = function(mList, button) {
                 s = '0' + s
             }
             $('#id-BGM-now').text(`${m}:${s}`)
-            $("#id-BGM-range").slider( "value", now )
+            $("#id-BGM-range").slider({ value: now })
         })
     // 进度条
-    $("#id-BGM-volume").on('click', function(e) {
-        var volume = $("#id-BGM-volume").slider("value") / 100
-        $('#id-BGM')[0].volume = volume
-    })
-    // 音量
-    $("#id-BGM-range").on('click', function(e) {
-        var a = $(e.target).closest( '#id-BGM-range' )
-        var range = a.slider( "value")
+    $("#id-BGM-range").on('mouseup', function() {
+        var range = $("#id-BGM-range").slider("value")
         $('#id-BGM')[0].currentTime = range
     })
     // 跳转 进度
+    $(".BGM").on('mouseup', function() {
+        var volume = $("#id-BGM-volume").slider("value") / 100
+        $('#id-BGM')[0].volume = volume
+    })
+    // 跳转 音量
     $("#id-BGM-mList").on('click', 'music', function(event) {
         var id  = event.target.dataset.id
         var src = event.target.dataset.src
@@ -187,18 +186,18 @@ var music = function(mList, button) {
         })
     })
     // 循环播放
-    $('#id-BGM').on('ended', function(event) {
-        var player = $("#id-BGM")[0]
-        var all = mList.length
-        var old = player.dataset.id
-        var id  = Math.floor(Math.random() * mList.length)
-        $(mList).each( function(i ,e) {
-            if (Number(e.id) === id) {
-                player.src = `music/${id}.${e.type}`
-                player.dataset.id = id
-            }
-        })
-    })
+    // $('#id-BGM').on('ended', function(event) {
+    //     var player = $("#id-BGM")[0]
+    //     var all = mList.length
+    //     var old = player.dataset.id
+    //     var id  = Math.floor(Math.random() * mList.length)
+    //     $(mList).each( function(i ,e) {
+    //         if (Number(e.id) === id) {
+    //             player.src = `music/${id}.${e.type}`
+    //             player.dataset.id = id
+    //         }
+    //     })
+    // })
     // 随机播放
 }
 music(mList, '#id-home')
@@ -221,18 +220,15 @@ $( document ).ready(function() {
     max: 100,
     value: 0,
     animate: 1300
-  });
+  })
   // $("#blue").slider( "value", 100 )
   // $('.slider').each(function(index) {
   //   $(this).slider( "value", 75-index*(50/($('.slider').length-1)));
   // })
   createHoverState($(".slider a.ui-slider-handle"))
-  $("#id-BGM-volume").slider("value", 70)
+  $("#id-BGM-volume").slider("value", 30)
 })
 // 进度条 样式
-
-
-
 
 var tanChuang = function(title, mima) {
         var style = `
@@ -328,7 +324,7 @@ var tanChuang = function(title, mima) {
             }
         })
     }
-// tanChuang('你好，是否知道个人档案密钥','123') // 弹窗
+tanChuang('你好，是否知道个人档案密钥','123') // 弹窗
 var ckXian = function() {
         var body = document.querySelector('body')
         var style =
@@ -384,7 +380,7 @@ var init_comments = function() {
             comments.reverse()
         }
     }
-// init_comments()          // 初始 评论 comments 数据
+init_comments()          // 初始 评论 comments 数据
 var comment = function(comments, id) {
         var words = 140
         var html = `
@@ -456,6 +452,6 @@ var comment = function(comments, id) {
             $('.comment-text').after(temp)
         }
     }
-// comment(comments, id)    // 添加 评论 comments 模块
+comment(comments, id)    // 添加 评论 comments 模块
 
 log('想招纳我来工作？请发送邮件到 c@bigc.cc','\nʅ（´◔౪◔）ʃ')
