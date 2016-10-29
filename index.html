@@ -137,11 +137,50 @@
     </head>
     <!-- 主要内容 -->
     <body>
+        <style>
+            .BGM {
+                width: 40%;
+                margin: 0 auto;
+            }
+            #id-BGM,#id-BGM-range {
+                width: 100%;
+            }
+            music {
+                display: block;
+                padding: 0.2em 0 0.2em 0;
+            }
+            music:hover  { color: red; cursor: pointer; }
+        </style>
+        <div class="BGM">
+            <!-- 播放器 -->
+            <audio id="id-BGM" data-id=0 src="music/0.mp3" autoplay></audio>
+            <!-- 进度条 -->
+            <div><input id="id-BGM-range"  type="range" value="0"></div>
+            <!-- 00:00 / 00:00 -->
+            <span id="id-BGM-now">00:00</span> / <span id="id-BGM-end">00:00</span>
+            <!-- 音量 -->
+            <div><input id="id-BGM-volume" type="range" max=100 value="100"></div>
+            <!-- 歌曲信息 -->
+            <div id="id-BGM-name"  >歌曲名</div>
+            <div id="id-BGM-artist">艺术家</div>
+            <hr>
+            <!-- 按钮 -->
+            <a id="id-BGM-last" >上一曲</a>
+            <a id="id-BGM-play" ><i class="fa fa-play"></i></a>
+            <a id="id-BGM-next" >下一曲</a>
+            <hr>
+            <!-- 列表 -->
+            <div id="id-BGM-mList"></div>
+        </div>
+
+
+
+
         <!-- 导航 -->
         <div class="top">
             <div class="top-center pure-g">
                 <a id="id-home"    class="top-a pure-u-1-5" >
-                <i id="id-player" class="fa fa-pause"></i></a>
+                <i id="id-player"  class="fa fa-pause"></i></a>
                 <a id="id-resume"  class="top-a pure-u-1-5" href="#Resume">简历</a>
                 <a id="id-notes"   class="top-a pure-u-1-5" href="#Notes">笔记</a>
                 <a id="id-homework"class="top-a pure-u-1-5" href="#HomeWork">作品</a>
@@ -249,6 +288,7 @@
                 </div>
         </div>
         <div class="HomeWork"><a name="HomeWork"></a>
+
         </div>
         <h3>感谢花时间阅读我的简历，期待与您共事。</h3>
         <!-- 定制 log / 代码 debug -->
