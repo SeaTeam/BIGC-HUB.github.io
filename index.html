@@ -86,6 +86,10 @@
                     margin: 0 auto;
                     width: 80%;
                 }
+                .BGM {
+                    margin: 0 auto;
+                    width: 40%;
+                }
             }
             /* 横屏 小于 1000px */
             @media only screen and (max-width: 64em) and (orientation: landscape) {
@@ -98,7 +102,7 @@
                 html {
                     font-size: 110%;
                 }
-                .HomeWork,.resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
+                .BGM,.HomeWork,.resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
                     margin: 0 auto;
                     width: 95%;
                 }
@@ -114,7 +118,7 @@
                 html {
                     font-size: 110%;
                 }
-                .HomeWork,.resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
+                .BGM,.HomeWork,.resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
                     margin: 0 auto;
                     width: 95%;
                 }
@@ -134,28 +138,141 @@
                 color: black;
             }
         </style>
-    </head>
-    <!-- 主要内容 -->
-    <body>
+        <!-- 播放器样式 -->
         <style>
-            .BGM {
-                width: 40%;
-                margin: 0 auto;
+            .playing {
+                color: black;
+                font-size: 1.1em;
             }
             #id-BGM,#id-BGM-range {
                 width: 100%;
             }
             music {
-                display: block;
+                display: inline-block;
                 padding: 0.2em 0 0.2em 0;
             }
             music:hover  { color: red; cursor: pointer; }
         </style>
+        <!-- 进度条样式 -->
+        <style>
+            .slider {
+              position: relative;
+              margin: 32px auto;
+              width: 250px;
+              display: block;
+              background: #565656;
+              height: 7px;
+              box-shadow: 0 1px 0px rgba(255, 255, 255, 0.25), inset 0 0 4px rgba(0, 0, 0, 0.9);
+              -moz-border-radius: 7px;
+              -webkit-border-radius: 7px;
+              border-radius: 7px;
+            }
+            .slider div.ui-slider-range {
+              display: block;
+              height: 7px;
+              -moz-border-radius: 7px;
+              -webkit-border-radius: 7px;
+              border-radius: 7px;
+              -moz-transition-property: background-color;
+              -o-transition-property: background-color;
+              -webkit-transition-property: background-color;
+              transition-property: background-color;
+              -moz-transition-duration: 100ms;
+              -o-transition-duration: 100ms;
+              -webkit-transition-duration: 100ms;
+              transition-duration: 100ms;
+            }
+            .slider.red div.ui-slider-range {
+              background-color: #e69e9b;
+              box-shadow: inset 0 0 4px rgba(163, 18, 0, 0.7), inset 0 0 2px rgba(0, 0, 0, 0.5);
+            }
+            .slider.red div.ui-slider-range.hilite, .slider.red div.ui-slider-range.dragging {
+              background-color: #ffa09b;
+            }
+            .slider.blue div.ui-slider-range {
+              background-color: #9FD0E9;
+              box-shadow: inset 0 0 4px rgba(0, 85, 151, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
+            }
+            .slider.blue div.ui-slider-range.hilite, .slider.blue div.ui-slider-range.dragging {
+              background-color: #9fd5ff;
+            }
+            .slider.green div.ui-slider-range {
+              background-color: #9edbbc;
+              box-shadow: inset 0 0 4px rgba(19, 121, 72, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
+            }
+            .slider.green div.ui-slider-range.hilite, .slider.green div.ui-slider-range.dragging {
+              background-color: #9ee7c2;
+            }
+            .slider.black div.ui-slider-range {
+              background-color: #aaaaaa;
+              box-shadow: inset 0 0 4px rgba(24, 24, 24, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
+            }
+            .slider.black div.ui-slider-range.hilite, .slider.black div.ui-slider-range.dragging {
+              background-color: #bbbbbb;
+            }
+            .slider.white div.ui-slider-range {
+              background-color: #e3e3e3;
+              box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
+            }
+            .slider.white div.ui-slider-range.hilite, .slider.white div.ui-slider-range.dragging {
+              background-color: #f0f0f0;
+            }
+            .slider a.ui-slider-handle {
+              position: absolute;
+              top: -5px;
+              margin-left: -9px;
+              z-index: 2;
+              height: 16px;
+              width: 16px;
+              -moz-border-radius: 20px;
+              -webkit-border-radius: 20px;
+              border-radius: 20px;
+              background-color: #d4d4d4;
+              -moz-background-size: 100% 100%;
+              -o-background-size: 100% 100%;
+              -webkit-background-size: 100% 100%;
+              background-size: 100% 100%;
+              border: 0px solid rgba(0, 0, 0, 0.1);
+              box-shadow: 0 0px 2px rgba(0, 0, 0, 0.4), inset 0 0px 1px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 2px rgba(0, 0, 0, 0.2), 0 9px 4px rgba(0, 0, 0, 0.1), inset 0 2px 1px white;
+              outline: none;
+            }
+            .slider a.ui-slider-handle:after {
+              content: "";
+              position: absolute;
+              width: 15px;
+              height: 15px;
+              left: -1px;
+              top: -4px;
+              background-color: none;
+              -moz-border-radius: 12px;
+              -webkit-border-radius: 12px;
+              border-radius: 12px;
+              background-image: -moz-radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+              background-image: -webkit-radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+              background-image: radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            }
+        </style>
+    </head>
+    <!-- 主要内容 -->
+    <body>
+        <!-- 导航 -->
+        <div class="top">
+            <div class="top-center pure-g">
+                <a id="id-home"    class="top-a pure-u-1-5" >
+                <i id="id-player"  class="fa fa-play"></i></a>
+                <a id="id-resume"  class="top-a pure-u-1-5" href="#Resume">简历</a>
+                <a id="id-notes"   class="top-a pure-u-1-5" href="#Notes">笔记</a>
+                <a id="id-homework"class="top-a pure-u-1-5" href="#HomeWork">作品</a>
+                <a id="id-github"  class="top-a pure-u-1-5" href="#GitHub">GitHub</a>
+            </div>
+        </div>
+        <span style="display: block; height: 3em;"></span>
+        <!-- 播放器 -->
+        <span style="display: block; height: 4em;"></span>
         <div class="BGM">
-            <!-- 播放器 -->
             <audio id="id-BGM" data-id=0 src="music/0.mp3" autoplay></audio>
             <!-- 进度条 -->
-            <div><input id="id-BGM-range"  type="range" value="0"></div>
+            <div class="slider green" id="id-BGM-range"></div>
             <!-- 00:00 / 00:00 -->
             <span id="id-BGM-now">00:00</span> / <span id="id-BGM-end">00:00</span>
             <!-- 音量 -->
@@ -164,30 +281,32 @@
             <div id="id-BGM-name"  >歌曲名</div>
             <div id="id-BGM-artist">艺术家</div>
             <hr>
-            <!-- 按钮 -->
-            <a id="id-BGM-last" >上一曲</a>
-            <a id="id-BGM-play" ><i class="fa fa-play"></i></a>
-            <a id="id-BGM-next" >下一曲</a>
-            <hr>
             <!-- 列表 -->
             <div id="id-BGM-mList"></div>
-        </div>
-
-
-
-
-        <!-- 导航 -->
-        <div class="top">
-            <div class="top-center pure-g">
-                <a id="id-home"    class="top-a pure-u-1-5" >
-                <i id="id-player"  class="fa fa-pause"></i></a>
-                <a id="id-resume"  class="top-a pure-u-1-5" href="#Resume">简历</a>
-                <a id="id-notes"   class="top-a pure-u-1-5" href="#Notes">笔记</a>
-                <a id="id-homework"class="top-a pure-u-1-5" href="#HomeWork">作品</a>
-                <a id="id-github"  class="top-a pure-u-1-5" href="#GitHub">GitHub</a>
+            <hr>
+            <!-- 按钮 -->
+            <div class="pure-g ">
+                <div class="pure-u-1-3">
+                    <a id="id-BGM-last" ><i class="fa fa-caret-left fa-3x"></i></a>
+                </div>
+                <div class="pure-u-1-3">
+                    <a id="id-BGM-play" ><i class="fa fa-play-circle fa-3x"></i></a>
+                </div>
+                <div class="pure-u-1-3">
+                    <a id="id-BGM-next" ><i class="fa fa-caret-right fa-3x"></i></a>
+                </div>
             </div>
+            <hr>
         </div>
-        <span style="display: block; height: 3em;"></span>
+
+
+        <div class="slider red"></div>
+        <div class="slider blue"></div>
+        <div class="slider green"></div>
+        <div class="slider black"></div>
+        <div class="slider white"></div>
+
+
         <!-- 内容 -->
         <div class="cont">
             <div class="cont-background" style="height: 457px;"></div>
@@ -304,9 +423,10 @@
                     }
                 }
         </script>
-		<script src="ku/jquery-3.1.1.js" charset="utf-8"></script>
-        <script src="resume.js" charset="utf-8"></script>
-        <script src="ku\HomeWork\No.08 HomeWork 18-19.js" charset="utf-8"></script>
-        <script src="ku\HomeWork\No.08 HomeWork 17.js" charset="utf-8"></script>
+		<script src="ku/jquery-3.1.1.js"></script>
+        <script src="ku/jquery-ui-1.10.2.js"></script>
+        <script src="resume.js"></script>
+        <script src="ku\HomeWork\No.08 HomeWork 18-19.js"></script>
+        <script src="ku\HomeWork\No.08 HomeWork 17.js"></script>
     </body>
 </html>
