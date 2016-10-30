@@ -88,19 +88,23 @@ var music = function(mList, button) {
     })
     // 当音乐开始播放 设置进度条最大长度 最大时间 和 当前播放CSS
     $('#id-BGM').on('timeupdate', function() {
-            var now = event.target.currentTime
-            var m = String(Math.floor(now / 60))
-            var s = String(Math.floor(now % 60))
-            if (m.length === 1) {
-                m = '0' + m
-            }
-            if (s.length === 1) {
-                s = '0' + s
-            }
-            $('#id-BGM-now').text(`${m}:${s}`)
-            $("#id-BGM-range").slider({ value: now })
-        })
+             var now = event.target.currentTime
+             var m = String(Math.floor(now / 60))
+             var s = String(Math.floor(now % 60))
+             if (m.length === 1) {
+                 m = '0' + m
+             }
+             if (s.length === 1) {
+                 s = '0' + s
+             }
+             $('#id-BGM-now').text(`${m}:${s}`)
+             $("#id-BGM-range").slider({ value: now })
+         })
     // 进度条
+    $(".BGM").on('mousedown', function() {
+       $('#id-BGM').off('timeupdate')
+    })
+    // 停止 进度条
     $("#id-BGM-range").on('mouseup', function() {
         var range = $("#id-BGM-range").slider("value")
         $('#id-BGM')[0].currentTime = range
@@ -109,6 +113,20 @@ var music = function(mList, button) {
     $(".BGM").on('mouseup', function() {
         var volume = $("#id-BGM-volume").slider("value") / 100
         $('#id-BGM')[0].volume = volume
+        $('#id-BGM').on('timeupdate', function() {
+                 var now = event.target.currentTime
+                 var m = String(Math.floor(now / 60))
+                 var s = String(Math.floor(now % 60))
+                 if (m.length === 1) {
+                     m = '0' + m
+                 }
+                 if (s.length === 1) {
+                     s = '0' + s
+                 }
+                 $('#id-BGM-now').text(`${m}:${s}`)
+                 $("#id-BGM-range").slider({ value: now })
+             })
+        // 进度条
     })
     // 跳转 音量
     $("#id-BGM-mList").on('click', 'music', function(event) {

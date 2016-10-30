@@ -1,428 +1,530 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-    <!-- 前情提要 -->
-    <head>
-        <meta charset="utf-8">
-        <title>简历Resume - 大海</title>
-        <link rel="icon" href="imgs/Favicon.ico">
-        <!-- 加载 CSS 框架 -->
-		<link rel="stylesheet" href="ku/Pure-release-0.6.0/pure-min.css">
-        <link rel="stylesheet" href="ku/Pure-mobile.css">
-        <link rel="stylesheet" href="ku/Font-awesome-4.7.0/css/font-awesome.min.css">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- 主要样式 -->
-        <style>
-            a:link   { color: rgb(51, 103, 214); text-decoration: none; } /*去下划线*/
-            a:visited{ color: rgb(51, 103, 214); }
-            a:hover  { cursor: pointer; } /*鼠标样式*/
-            a:active { color: rgb( 5,  37, 119); }
-            html, button, input, select, textarea,
-            .pure-g [class *= "pure-u"] {
-                /* 字体栈写在这: */
-                font-family: Roboto, 'Segoe UI',Arial,'Microsoft Yahei',sans-serif;
+<!-- 前情提要 -->
+<head>
+    <meta charset="utf-8">
+    <title>简历Resume - 大海</title>
+    <link rel="icon" href="imgs/Favicon.ico">
+    <!-- 加载 CSS 框架 -->
+    <link rel="stylesheet" href="ku/Pure-release-0.6.0/pure-min.css">
+    <link rel="stylesheet" href="ku/Pure-mobile.css">
+    <link rel="stylesheet" href="ku/Font-awesome-4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 主要样式 -->
+    <style>
+        a:link {
+            color: rgb(51, 103, 214);
+            text-decoration: none;
+        }
+        /*去下划线*/
+
+        a:visited {
+            color: rgb(51, 103, 214);
+        }
+
+        a:hover {
+            cursor: pointer;
+        }
+        /*鼠标样式*/
+
+        a:active {
+            color: rgb( 5, 37, 119);
+        }
+
+        html,
+        button,
+        input,
+        select,
+        textarea,
+        .pure-g [class *="pure-u"] {
+            /* 字体栈写在这: */
+            font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+        }
+
+        html {
+            text-align: center;
+            background: rgb(241, 241, 241);
+            color: rgb(104, 113, 116);
+            font-weight: 500;
+            font-size: 1.17em;
+        }
+
+        .top {
+            z-index: 2;
+            position: fixed;
+            width: 100%;
+            height: 3em;
+            background: black;
+            opacity: 0.86;
+            font-weight: 300;
+            color: rgb(241, 241, 241);
+        }
+
+        a.top-a:link {
+            color: white;
+            text-decoration: none;
+        }
+        /*去下划线*/
+
+        a.top-a:visited {
+            color: white;
+        }
+
+        a.top-a:active {
+            color: rgb( 175, 175, 175);
+        }
+
+        .top-center {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: auto;
+        }
+        /* 背景 */
+
+        .cont-background {
+            background: url('imgs/104.Matrix.png') no-repeat top;
+            background-size: 457px;
+        }
+        /* 评论 */
+
+        #id-comment-text,
+        #id-comment-okay,
+        .message {
+            margin: 0.4em auto;
+        }
+
+        .message {
+            text-align: justify;
+        }
+
+        #id-comment-okay {
+            text-align: right;
+            margin: 0 auto 1.41em auto;
+        }
+
+        .message-cont {
+            border: 0;
+            border-top: 0.1em;
+            border-style: solid;
+            padding: 0.5em 0 2em 0;
+        }
+
+        .message-name {
+            border-top-right-radius: 14px;
+            color: rgb(155, 155, 155);
+            background: rgb(34, 34, 34);
+        }
+    </style>
+    <!-- 自适应 -->
+    <style media="screen">
+        /* 横屏 大于 1000px */
+
+        @media only screen and (min-width: 64em) {
+            .top-center {
+                width: 80%;
+            }
+            .HomeWork,
+            .resume,
+            .resume-contact,
+            #id-comment-text,
+            #id-comment-okay,
+            .message {
+                margin: 0 auto;
+                width: 80%;
+            }
+            .BGM {
+                margin: 0 auto;
+                width: 40%;
+            }
+        }
+        /* 横屏 小于 1000px */
+
+        @media only screen and (max-width: 64em) and (orientation: landscape) {
+            #id-notes,
+            #id-homework {
+                display: none;
+            }
+            #id-home,
+            #id-github,
+            #id-resume {
+                width: 33.3333%;
             }
             html {
-                text-align: center;
-                background: rgb(241, 241, 241);
-                color: rgb(104, 113, 116);
-                font-weight: 500;
-                font-size: 1.17em;
+                font-size: 110%;
             }
-            .top {
-                z-index: 2;
-                position:fixed;
-                width: 100%;
-                height: 3em;
-                background: black;
-                opacity: 0.86;
-                font-weight: 300;
-                color: rgb(241, 241, 241);
-            }
-            a.top-a:link   { color: white; text-decoration: none; } /*去下划线*/
-            a.top-a:visited{ color: white; }
-            a.top-a:active { color: rgb( 175, 175, 175); }
-            .top-center {
-                position: relative;
-                top: 50%;
-                transform: translateY(-50%);
-                margin: auto;
-            }
-            /* 背景 */
-            .cont-background {
-                background: url('imgs/104.Matrix.png') no-repeat top;
-                background-size: 457px;
-            }
-            /* 评论 */
-            #id-comment-text,#id-comment-okay,.message {
-                margin: 0.4em auto;
-            }
+            .BGM,
+            .HomeWork,
+            .resume,
+            .resume-contact,
+            #id-comment-text,
+            #id-comment-okay,
             .message {
-                text-align: justify;
-            }
-            #id-comment-okay {
-                text-align: right;
-                margin: 0 auto 1.41em auto;
-            }
-            .message-cont {
-                border: 0;
-                border-top: 0.1em;
-                border-style: solid;
-                padding: 0.5em 0 2em 0;
-            }
-            .message-name {
-                border-top-right-radius: 14px;
-                color: rgb(155, 155, 155);
-                background: rgb(34, 34, 34);
-            }
-        </style>
-        <!-- 自适应 -->
-        <style media="screen">
-            /* 横屏 大于 1000px */
-            @media only screen and (min-width: 64em) {
-                .top-center {
-                    width: 80%;
-                }
-                .HomeWork,.resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0 auto;
-                    width: 80%;
-                }
-                .BGM {
-                    margin: 0 auto;
-                    width: 40%;
-                }
-            }
-            /* 横屏 小于 1000px */
-            @media only screen and (max-width: 64em) and (orientation: landscape) {
-                #id-notes,#id-homework {
-                    display: none;
-                }
-                #id-home,#id-github,#id-resume {
-                    width: 33.3333%;
-                }
-                html {
-                    font-size: 110%;
-                }
-                .BGM,.HomeWork,.resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0 auto;
-                    width: 95%;
-                }
-            }
-            /* 竖屏 小于 1000px */
-            @media only screen and (max-width: 64em) and (orientation: portrait) {
-                #id-notes,#id-homework {
-                    display: none;
-                }
-                #id-home,#id-github,#id-resume {
-                    width: 33.3333%;
-                }
-                html {
-                    font-size: 110%;
-                }
-                .BGM,.HomeWork,.resume,.resume-contact,#id-comment-text,#id-comment-okay,.message {
-                    margin: 0 auto;
-                    width: 95%;
-                }
-            }
-        </style>
-        <!-- 简历样式 -->
-        <style>
-            .pure-form-stacked input[type="text"],
-            .pure-form-stacked input[type="password"],
-            .pure-form-stacked textarea  {
                 margin: 0 auto;
-                text-align: center;
+                width: 95%;
             }
-            .resume {
-                text-align: justify;
-                font-weight: 500;
-                color: black;
+        }
+        /* 竖屏 小于 1000px */
+
+        @media only screen and (max-width: 64em) and (orientation: portrait) {
+            #id-notes,
+            #id-homework {
+                display: none;
             }
-        </style>
-        <!-- 播放器样式 -->
-        <style>
-            .playing {
-                color: black;
-                font-size: 1.1em;
+            #id-home,
+            #id-github,
+            #id-resume {
+                width: 33.3333%;
             }
-            #id-BGM,#id-BGM-range {
-                width: 100%;
+            html {
+                font-size: 110%;
             }
-            music {
-                display: inline-block;
-                padding: 0.2em 0 0.2em 0;
+            .BGM,
+            .HomeWork,
+            .resume,
+            .resume-contact,
+            #id-comment-text,
+            #id-comment-okay,
+            .message {
+                margin: 0 auto;
+                width: 95%;
             }
-            music:hover  { color: red; cursor: pointer; }
-            #id-BGM-name {
-                font-size: 1.2em;
-                font-weight: bold;
-                margin: 1em auto;
-            }
-        </style>
-        <!-- 进度条样式 -->
-        <style>
-            .slider {
-              position: relative;
-              margin: 32px auto;
-              width: 250px;
-              display: block;
-              background: #565656;
-              height: 7px;
-              box-shadow: 0 1px 0px rgba(255, 255, 255, 0.25), inset 0 0 4px rgba(0, 0, 0, 0.9);
-              -moz-border-radius: 7px;
-              -webkit-border-radius: 7px;
-              border-radius: 7px;
-            }
-            .slider div.ui-slider-range {
-              display: block;
-              height: 7px;
-              -moz-border-radius: 7px;
-              -webkit-border-radius: 7px;
-              border-radius: 7px;
-              -moz-transition-property: background-color;
-              -o-transition-property: background-color;
-              -webkit-transition-property: background-color;
-              transition-property: background-color;
-              -moz-transition-duration: 100ms;
-              -o-transition-duration: 100ms;
-              -webkit-transition-duration: 100ms;
-              transition-duration: 100ms;
-            }
-            .slider.red div.ui-slider-range {
-              background-color: #e69e9b;
-              box-shadow: inset 0 0 4px rgba(163, 18, 0, 0.7), inset 0 0 2px rgba(0, 0, 0, 0.5);
-            }
-            .slider.red div.ui-slider-range.hilite, .slider.red div.ui-slider-range.dragging {
-              background-color: #ffa09b;
-            }
-            .slider.blue div.ui-slider-range {
-              background-color: #9FD0E9;
-              box-shadow: inset 0 0 4px rgba(0, 85, 151, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
-            }
-            .slider.blue div.ui-slider-range.hilite, .slider.blue div.ui-slider-range.dragging {
-              background-color: #9fd5ff;
-            }
-            .slider.green div.ui-slider-range {
-              background-color: #9edbbc;
-              box-shadow: inset 0 0 4px rgba(19, 121, 72, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
-            }
-            .slider.green div.ui-slider-range.hilite, .slider.green div.ui-slider-range.dragging {
-              background-color: #9ee7c2;
-            }
-            .slider.black div.ui-slider-range {
-              background-color: #aaaaaa;
-              box-shadow: inset 0 0 4px rgba(24, 24, 24, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
-            }
-            .slider.black div.ui-slider-range.hilite, .slider.black div.ui-slider-range.dragging {
-              background-color: #bbbbbb;
-            }
-            .slider.white div.ui-slider-range {
-              background-color: #e3e3e3;
-              box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
-            }
-            .slider.white div.ui-slider-range.hilite, .slider.white div.ui-slider-range.dragging {
-              background-color: #f0f0f0;
-            }
-            .slider a.ui-slider-handle {
-              position: absolute;
-              top: -5px;
-              margin-left: -9px;
-              z-index: 1;
-              height: 16px;
-              width: 16px;
-              -moz-border-radius: 20px;
-              -webkit-border-radius: 20px;
-              border-radius: 20px;
-              background-color: #d4d4d4;
-              -moz-background-size: 100% 100%;
-              -o-background-size: 100% 100%;
-              -webkit-background-size: 100% 100%;
-              background-size: 100% 100%;
-              border: 0px solid rgba(0, 0, 0, 0.1);
-              box-shadow: 0 0px 2px rgba(0, 0, 0, 0.4), inset 0 0px 1px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 2px rgba(0, 0, 0, 0.2), 0 9px 4px rgba(0, 0, 0, 0.1), inset 0 2px 1px white;
-              outline: none;
-            }
-            .slider a.ui-slider-handle:after {
-              content: "";
-              position: absolute;
-              width: 15px;
-              height: 15px;
-              left: -1px;
-              top: -4px;
-              background-color: none;
-              -moz-border-radius: 12px;
-              -webkit-border-radius: 12px;
-              border-radius: 12px;
-              background-image: -moz-radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-              background-image: -webkit-radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-              background-image: radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
-            }
-        </style>
-    </head>
-    <!-- 主要内容 -->
-    <body>
-        <!-- 导航 -->
-        <div class="top">
-            <div class="top-center pure-g">
-                <a id="id-home"    class="top-a pure-u-1-5" >
-                <i id="id-player"  class="fa fa-play"></i></a>
-                <a id="id-resume"  class="top-a pure-u-1-5" href="#Resume">简历</a>
-                <a id="id-notes"   class="top-a pure-u-1-5" href="#Notes">笔记</a>
-                <a id="id-homework"class="top-a pure-u-1-5" href="#HomeWork">作品</a>
-                <a id="id-github"  class="top-a pure-u-1-5" href="#GitHub">GitHub</a>
+        }
+    </style>
+    <!-- 简历样式 -->
+    <style>
+        .pure-form-stacked input[type="text"],
+        .pure-form-stacked input[type="password"],
+        .pure-form-stacked textarea {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .resume {
+            text-align: justify;
+            font-weight: 500;
+            color: black;
+        }
+    </style>
+    <!-- 播放器样式 -->
+    <style>
+        .playing {
+            color: black;
+            font-size: 1.1em;
+        }
+
+        #id-BGM,
+        #id-BGM-range {
+            width: 100%;
+        }
+
+        music {
+            display: inline-block;
+            padding: 0.2em 0 0.2em 0;
+        }
+
+        music:hover {
+            color: red;
+            cursor: pointer;
+        }
+    </style>
+    <!-- 进度条样式 -->
+    <style>
+        .slider {
+            position: relative;
+            margin: 32px auto;
+            width: 250px;
+            display: block;
+            background: #565656;
+            height: 7px;
+            box-shadow: 0 1px 0px rgba(255, 255, 255, 0.25), inset 0 0 4px rgba(0, 0, 0, 0.9);
+            -moz-border-radius: 7px;
+            -webkit-border-radius: 7px;
+            border-radius: 7px;
+        }
+
+        .slider div.ui-slider-range {
+            display: block;
+            height: 7px;
+            -moz-border-radius: 7px;
+            -webkit-border-radius: 7px;
+            border-radius: 7px;
+            -moz-transition-property: background-color;
+            -o-transition-property: background-color;
+            -webkit-transition-property: background-color;
+            transition-property: background-color;
+            -moz-transition-duration: 100ms;
+            -o-transition-duration: 100ms;
+            -webkit-transition-duration: 100ms;
+            transition-duration: 100ms;
+        }
+
+        .slider.red div.ui-slider-range {
+            background-color: #e69e9b;
+            box-shadow: inset 0 0 4px rgba(163, 18, 0, 0.7), inset 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider.red div.ui-slider-range.hilite,
+        .slider.red div.ui-slider-range.dragging {
+            background-color: #ffa09b;
+        }
+
+        .slider.blue div.ui-slider-range {
+            background-color: #9FD0E9;
+            box-shadow: inset 0 0 4px rgba(0, 85, 151, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider.blue div.ui-slider-range.hilite,
+        .slider.blue div.ui-slider-range.dragging {
+            background-color: #9fd5ff;
+        }
+
+        .slider.green div.ui-slider-range {
+            background-color: #9edbbc;
+            box-shadow: inset 0 0 4px rgba(19, 121, 72, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider.green div.ui-slider-range.hilite,
+        .slider.green div.ui-slider-range.dragging {
+            background-color: #9ee7c2;
+        }
+
+        .slider.black div.ui-slider-range {
+            background-color: #aaaaaa;
+            box-shadow: inset 0 0 4px rgba(24, 24, 24, 0.8), inset 0 0 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .slider.black div.ui-slider-range.hilite,
+        .slider.black div.ui-slider-range.dragging {
+            background-color: #bbbbbb;
+        }
+
+        .slider.white div.ui-slider-range {
+            background-color: #e3e3e3;
+            box-shadow: inset 0 0 4px rgba(88, 88, 88, 0.5), inset 0 0 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .slider.white div.ui-slider-range.hilite,
+        .slider.white div.ui-slider-range.dragging {
+            background-color: #f0f0f0;
+        }
+
+        .slider a.ui-slider-handle {
+            position: absolute;
+            top: -5px;
+            margin-left: -9px;
+            z-index: 1;
+            height: 16px;
+            width: 16px;
+            -moz-border-radius: 20px;
+            -webkit-border-radius: 20px;
+            border-radius: 20px;
+            background-color: #d4d4d4;
+            -moz-background-size: 100% 100%;
+            -o-background-size: 100% 100%;
+            -webkit-background-size: 100% 100%;
+            background-size: 100% 100%;
+            border: 0px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0px 2px rgba(0, 0, 0, 0.4), inset 0 0px 1px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.6), 0 4px 2px rgba(0, 0, 0, 0.2), 0 9px 4px rgba(0, 0, 0, 0.1), inset 0 2px 1px white;
+            outline: none;
+        }
+
+        .slider a.ui-slider-handle:after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            left: -1px;
+            top: -4px;
+            background-color: none;
+            -moz-border-radius: 12px;
+            -webkit-border-radius: 12px;
+            border-radius: 12px;
+            background-image: -moz-radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            background-image: -webkit-radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+            background-image: radial-gradient(#ffffff, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0));
+        }
+    </style>
+</head>
+<!-- 主要内容 -->
+<body>
+    <!-- 导航 -->
+    <div class="top">
+        <div class="top-center pure-g">
+            <a id="id-home" class="top-a pure-u-1-5">
+                <i id="id-player" class="fa fa-play"></i></a>
+            <a id="id-resume" class="top-a pure-u-1-5" href="#Resume">简历</a>
+            <a id="id-notes" class="top-a pure-u-1-5" href="#Notes">笔记</a>
+            <a id="id-homework" class="top-a pure-u-1-5" href="#HomeWork">作品</a>
+            <a id="id-github" class="top-a pure-u-1-5" href="#GitHub">GitHub</a>
+        </div>
+    </div>
+    <span style="display: block; height: 3em;"></span>
+    <!-- 播放器 -->
+    <div class="BGM">
+        <audio id="id-BGM" data-id=0 src="music/0.mp3" autoplay></audio>
+        <!-- 进度条 -->
+        <div class="slider green" id="id-BGM-range"></div>
+        <!-- 00:00 / 00:00 -->
+        <span id="id-BGM-now">00:00</span> / <span id="id-BGM-end">00:00</span>
+        <!-- 音量 -->
+        <div class="slider white" id="id-BGM-volume"></div>
+        <!-- 歌曲信息 -->
+        <div id="id-BGM-name">歌曲名</div>
+        <div id="id-BGM-artist">艺术家</div>
+        <hr>
+        <!-- 列表 -->
+        <div id="id-BGM-mList"></div>
+        <hr>
+        <!-- 按钮 -->
+        <div class="pure-g ">
+            <div class="pure-u-1-3">
+                <a id="id-BGM-last"><i class="fa fa-caret-left fa-3x"></i></a>
+            </div>
+            <div class="pure-u-1-3">
+                <a id="id-BGM-play"><i class="fa fa-play-circle fa-3x"></i></a>
+            </div>
+            <div class="pure-u-1-3">
+                <a id="id-BGM-next"><i class="fa fa-caret-right fa-3x"></i></a>
             </div>
         </div>
-        <span style="display: block; height: 3em;"></span>
-        <!-- 播放器 -->
-        <div class="BGM">
-            <audio id="id-BGM" data-id=0 src="music/0.mp3" autoplay></audio>
-            <!-- 进度条 -->
-            <div class="slider green" id="id-BGM-range"></div>
-            <!-- 00:00 / 00:00 -->
-            <span id="id-BGM-now">00:00</span> / <span id="id-BGM-end">00:00</span>
-            <!-- 音量 -->
-            <div>
-                 <div class="slider white" id="id-BGM-volume"></div>
-            </div>
-            <!-- 歌曲信息 -->
-            <div id="id-BGM-name"  >歌曲名</div>
-            <div id="id-BGM-artist">艺术家</div>
-            <hr>
-            <!-- 列表 -->
-            <div id="id-BGM-mList"></div>
-            <hr>
-            <!-- 按钮 -->
-            <div class="pure-g ">
-                <div class="pure-u-1-3">
-                    <a id="id-BGM-last" ><i class="fa fa-caret-left fa-3x"></i></a>
-                </div>
-                <div class="pure-u-1-3">
-                    <a id="id-BGM-play" ><i class="fa fa-play-circle fa-3x"></i></a>
-                </div>
-                <div class="pure-u-1-3">
-                    <a id="id-BGM-next" ><i class="fa fa-caret-right fa-3x"></i></a>
-                </div>
-            </div>
-            <hr>
-        </div>
-        <!-- 内容 -->
-        <div class="cont">
-            <div class="cont-background" style="height: 457px;"></div>
-            <a name="Resume"></a>
-            <h1>JavaScript前端工程师，在此。</h1>
-            <!-- 联系方式 -->
-            <form class="resume-contact pure-form pure-form-stacked">
-                <fieldset>
-                    <legend>汪洋</legend>
-                    <div class="pure-g ">
-                        <div class="pure-u-1 pure-u-md-1-3">
-                            <label><i class="fa fa-phone fa-2x" aria-hidden="true"></i></label>
-                            <input class="input-mi" value="+86 189-6670-2120" type="text" readonly>
-                        </div>
+        <hr>
+    </div>
 
-                        <div class="pure-u-1 pure-u-md-1-3">
-                            <label><i class="fa fa-weixin fa-2x" aria-hidden="true"></i></label>
-                            <input class="input-mi" value="iwangyang" type="password" readonly>
-                        </div>
-
-                        <div class="pure-u-1 pure-u-md-1-3">
-                            <label><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></label>
-                            <input class="input-mi" value="c@bigc.cc" type="text" readonly>
-                        </div>
+    <!-- 内容 -->
+    <div class="cont">
+        <div class="cont-background" style="height: 457px;"></div>
+        <a name="Resume"></a>
+        <h1>JavaScript前端工程师，在此。</h1>
+        <!-- 联系方式 -->
+        <form class="resume-contact pure-form pure-form-stacked">
+            <fieldset>
+                <legend>汪洋</legend>
+                <div class="pure-g ">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <label><i class="fa fa-phone fa-2x" aria-hidden="true"></i></label>
+                        <input class="input-mi" value="+86 189-6670-2120" type="text" readonly>
                     </div>
-                </fieldset>
-            </form>
-            <!-- 简历 -->
-            <div class="resume pure-g">
-                    <!-- 左 侧边栏 -->
-                    <div class="resume-left pure-u-1 pure-u-lg-2-5">
-                        <hr><h2><i class="fa fa-university" aria-hidden="true"></i>
-                        毕业院校</h2>2011 ~ 2015 西安美术学院 本科<hr>
-                        <h2><i class="fa fa-wrench" aria-hidden="true"></i>
-                        项目与工作经验</h2>
-                        <p>使用 WordPress 搭架个人网站 并多年维护</p><a name="Notes"></a>
-                        <a target="_blank" href="http://bigc.cc"><i class="fa fa-wordpress fa-2x pull-left"></i>
+
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <label><i class="fa fa-weixin fa-2x" aria-hidden="true"></i></label>
+                        <input class="input-mi" value="iwangyang" type="password" readonly>
+                    </div>
+
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <label><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></label>
+                        <input class="input-mi" value="c@bigc.cc" type="text" readonly>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <!-- 简历 -->
+        <div class="resume pure-g">
+            <!-- 左 侧边栏 -->
+            <div class="resume-left pure-u-1 pure-u-lg-2-5">
+                <hr>
+                <h2><i class="fa fa-university" aria-hidden="true"></i> 毕业院校
+                </h2>2011 ~ 2015 西安美术学院 本科
+                <hr>
+                <h2><i class="fa fa-wrench" aria-hidden="true"></i> 项目与工作经验
+                </h2>
+                <p>使用 WordPress 搭架个人网站 并多年维护</p>
+                <a name="Notes"></a>
+                <a target="_blank" href="http://bigc.cc"><i class="fa fa-wordpress fa-2x pull-left"></i>
                             http://bigc.cc<br>Version 4.5.4</a>
 
-                        <p>使用 CMD MarkDown 编写学习手册 随时更新 急速查阅</p><a name="GitHub"></a>
-                        <a target="_blank" href="https://www.zybuluo.com/iwangyang/note/519509"><i class="fa fa-edit fa-2x pull-left"></i>
+                <p>使用 CMD MarkDown 编写学习手册 随时更新 急速查阅</p>
+                <a name="GitHub"></a>
+                <a target="_blank" href="https://www.zybuluo.com/iwangyang/note/519509"><i class="fa fa-edit fa-2x pull-left"></i>
                             萧瓜 HTML CSS Javascript<br>Python 3 小甲鱼 笔记</a>
 
-                        <p>使用 GitHub 分布式版本存储 管理项目作业</p>
-                        <a target="_blank" href="https://github.com/BIGC-HUB"><i class="fa fa-github-alt fa-2x pull-left"></i>
+                <p>使用 GitHub 分布式版本存储 管理项目作业</p>
+                <a target="_blank" href="https://github.com/BIGC-HUB"><i class="fa fa-github-alt fa-2x pull-left"></i>
                             https://github.com/<br>BIGC-HUB</a>
 
-                        <p><li>实现 JD.com <a target="_blank" href="ku/HomeWork/No.14 HomeWork.html">首页轮播图</a></li></p>
-                        <p><li>实现 JS弹窗 全屏密码锁定</li></p>
-                        <p><li>实现 Weibo 字符限制评论框</li></p>
-                        <p><li>制作 TodoList 全功能</li></p>
-                        <p><li>制作 Chrome 参考线 插件 Ctrl + M</li></p>
-                        <p><li>纯 JavaScript 编写本页</li></p>
+                <p>
+                    <li>实现 JD.com <a target="_blank" href="ku/HomeWork/No.14 HomeWork.html">首页轮播图</a></li>
+                </p>
+                <p>
+                    <li>实现 JS弹窗 全屏密码锁定</li>
+                </p>
+                <p>
+                    <li>实现 Weibo 字符限制评论框</li>
+                </p>
+                <p>
+                    <li>制作 TodoList 全功能</li>
+                </p>
+                <p>
+                    <li>制作 Chrome 参考线 插件 Ctrl + M</li>
+                </p>
+                <p>
+                    <li>纯 JavaScript 编写本页</li>
+                </p>
 
-                        <p></p><hr>
-                        <p>2015<br> 杭州印象国际艺术教育 <b>教务老师</b></p>
-                        <p>2014<br> 三亚雍和国际青年旅舍 <b>义工</b></p>
-                        <p>2013<br> 西安锁艺人安防设备有限公司 <b>网页美工</b></p>
-                        <p>2011<br> 西安恒阳电子 <b>销售</b></p>
-                    </div>
-                    <!-- 右 侧边栏 -->
-                    <div class="resume-right pure-u-1 pure-u-lg-3-5">
-                        <hr><h2><i class="fa fa-cog fa-spin fa-3x fa-fw" aria-hidden="true"></i>
-                        技能</h2>
-                        <dl>
-                        <!-- 技能 -->
-                        <dt><h3>HTML<i class="fa fa-html5" aria-hidden="true"></i> &#38; CSS3</h3></dt>
-                            <p>　　能够编写语义化 HTML，模块化CSS，并实现复杂的布局与功能<br>
-                               　　开发符合 W3C 标准的页面，熟练使用 jQuery 框架<br>
-                               　　有良好的编码习惯</p>
-                        <dt><h3>JavaScript <i class="fa fa-plane" aria-hidden="true"></i></h3></dt>
-                            <dd><p>熟练运用 log 大法，编写 enSure 测试函数 拆分解决 各种类型 BUG<br>
-                               习惯性 注释 &#38; 缩进 增强代码可读性</p></dd>
-                            <dd><p>充分利用 盒模型 栅格 浮动定位 各类框架 @media 设计 <b>响应式布局</b><br><br>
-                               认真学习 原生DOM API 事件绑定 事件委托 事件冒泡 / 捕获<br>
-                               并且运用 原生UI组件和 JSON 数据格式对 Ajax 接口进行封装，定制了 Time 时间函数 等工具<br><br>
-                               熟练应用处理各种 对象 集合 数组 字符串 编码 RegExp 正则表达式 并封装成函数 解决实际问题<br>
-                               主要依靠 <b>扎实的基本功</b></p></dd>
-                        <dt><h3><i class="fa fa-flask" aria-hidden="true"></i> 框架  &#38; 工具</h3></dt>
-                            <dd><p>善于发现各种库 / 框架<br>
-                               熟练运用 jQuery 进行定制 扩展 事件操作 Class 属性 Ajax 请求<br>
-                               运用 Font Awesome 添加图标和动态堆叠效果<br>
-                               使用 Purecss 和 Bootstrap 布局</p></dd>
-                        <dt><h3><i class="fa fa-refresh" aria-hidden="true"></i> 后端语言</h3></dt>
-                            <dd><p>掌握 Python 基础 @decorator 装饰器 pyinstaller 打包可执行文件 beautifulsoup4 网页解析 easygui 图形用户界面<br>
-                               使用 PIP 或 Easy Install 管理模块<br>
-                               了解 HTTP（1.x / 2）、 TCP/IP、 WebSocket 等协议<br>
-                               实现 有道翻译API、TS 视频文件下载/合并、网络爬虫自动抓取图片、网页编码 \ 转译等项目<br>
-                               </p></dd>
-                        <dt><h3>新技术 &#38; 其他</h3></dt>
-                            <dd><p>学习了解 ES6 并经常使用 集合 Map，const 模板字符串 默认参数等 <br>
-                               运用 HTML5 语义化标签，并学会使用 LocalStorage 媒体查询，并了解 Canvas绘图 Hybrid App混合开发 原理和用法<br>
-                               运用 CSS3 新特性 对布局 字体 背景 颜色实现更加精确的掌控<br>
-                               日常会使用 Git 分布式控制版本 Atom 编译器 MarkDown 记录笔记与分享工具<br>
-                               精通 Adobe illustrator / Photoshop</p></dd>
-                        </dl>
-                    <hr></div>
-                </div>
+                <p></p>
+                <hr>
+                <p>2015<br> 杭州印象国际艺术教育 <b>教务老师</b></p>
+                <p>2014<br> 三亚雍和国际青年旅舍 <b>义工</b></p>
+                <p>2013<br> 西安锁艺人安防设备有限公司 <b>网页美工</b></p>
+                <p>2011<br> 西安恒阳电子 <b>销售</b></p>
+            </div>
+            <!-- 右 侧边栏 -->
+            <div class="resume-right pure-u-1 pure-u-lg-3-5">
+                <hr>
+                <h2><i class="fa fa-cog fa-spin fa-3x fa-fw" aria-hidden="true"></i> 技能
+                </h2>
+                <dl>
+                    <!-- 技能 -->
+                    <dt><h3>HTML<i class="fa fa-html5" aria-hidden="true"></i> &#38; CSS3</h3></dt>
+                    <p>　　能够编写语义化 HTML，模块化CSS，并实现复杂的布局与功能<br> 　　开发符合 W3C 标准的页面，熟练使用 jQuery 框架<br> 　　有良好的编码习惯
+                    </p>
+                    <dt><h3>JavaScript <i class="fa fa-plane" aria-hidden="true"></i></h3></dt>
+                    <dd>
+                        <p>熟练运用 log 大法，编写 enSure 测试函数 拆分解决 各种类型 BUG<br> 习惯性 注释 &#38; 缩进 增强代码可读性</p>
+                    </dd>
+                    <dd>
+                        <p>充分利用 盒模型 栅格 浮动定位 各类框架 @media 设计 <b>响应式布局</b><br><br> 认真学习 原生DOM API 事件绑定 事件委托 事件冒泡 / 捕获<br> 并且运用 原生UI组件和 JSON 数据格式对 Ajax 接口进行封装，定制了 Time 时间函数 等工具<br><br> 熟练应用处理各种 对象 集合 数组 字符串 编码 RegExp 正则表达式 并封装成函数 解决实际问题<br> 主要依靠 <b>扎实的基本功</b></p>
+                    </dd>
+                    <dt><h3><i class="fa fa-flask" aria-hidden="true"></i> 框架  &#38; 工具</h3></dt>
+                    <dd>
+                        <p>善于发现各种库 / 框架<br> 熟练运用 jQuery 进行定制 扩展 事件操作 Class 属性 Ajax 请求<br> 运用 Font Awesome 添加图标和动态堆叠效果<br> 使用 Purecss 和 Bootstrap 布局</p>
+                    </dd>
+                    <dt><h3><i class="fa fa-refresh" aria-hidden="true"></i> 后端语言</h3></dt>
+                    <dd>
+                        <p>掌握 Python 基础 @decorator 装饰器 pyinstaller 打包可执行文件 beautifulsoup4 网页解析 easygui 图形用户界面<br> 使用 PIP 或 Easy Install 管理模块<br> 了解 HTTP（1.x / 2）、 TCP/IP、 WebSocket 等协议<br> 实现 有道翻译API、TS 视频文件下载/合并、网络爬虫自动抓取图片、网页编码 \ 转译等项目<br>
+                        </p>
+                    </dd>
+                    <dt><h3>新技术 &#38; 其他</h3></dt>
+                    <dd>
+                        <p>学习了解 ES6 并经常使用 集合 Map，const 模板字符串 默认参数等 <br> 运用 HTML5 语义化标签，并学会使用 LocalStorage 媒体查询，并了解 Canvas绘图 Hybrid App混合开发 原理和用法<br> 运用 CSS3 新特性 对布局 字体 背景 颜色实现更加精确的掌控<br> 日常会使用 Git 分布式控制版本 Atom 编译器 MarkDown 记录笔记与分享工具<br> 精通 Adobe illustrator / Photoshop</p>
+                    </dd>
+                </dl>
+                <hr>
+            </div>
         </div>
-        <div class="HomeWork"><a name="HomeWork"></a>
-        </div>
-        <h3>感谢花时间阅读我的简历，期待与您共事。</h3>
-        <!-- 定制 log / 代码 debug -->
-        <script>
-            var log = function() {
+    </div>
+    <div class="HomeWork">
+        <a name="HomeWork"></a>
+
+    </div>
+    <h3>感谢花时间阅读我的简历，期待与您共事。</h3>
+    <!-- 定制 log / 代码 debug -->
+    <script>
+        var log = function() {
                 console.log.apply(console, arguments)
-                }
-                //定义自己的log很重要 enSure增强进化版 穿衣服
-            var ensure = function( def, result, message ) {
-                if( JSON.stringify( def ) !== JSON.stringify( result ) ) {
-                    log('异常————————————>', message)
-                    log('def    = "'+def+'"\nresult = "'+result+'"')
-                    }
-                }
-        </script>
-		<script src="ku/jquery-3.1.1.js"></script>
-        <script src="ku/jquery-ui-1.10.2.js"></script>
-        <script src="resume.js"></script>
-        <script src="ku\HomeWork\No.08 HomeWork 18-19.js"></script>
-        <script src="ku\HomeWork\No.08 HomeWork 17.js"></script>
-    </body>
+            }
+            //定义自己的log很重要 enSure增强进化版 穿衣服
+        var ensure = function(def, result, message) {
+            if (JSON.stringify(def) !== JSON.stringify(result)) {
+                log('异常————————————>', message)
+                log('def    = "' + def + '"\nresult = "' + result + '"')
+            }
+        }
+    </script>
+    <script src="ku/jquery-3.1.1.js"></script>
+    <script src="ku/jquery-ui-1.10.2.js"></script>
+    <script src="resume.js"></script>
+    <script src="ku\HomeWork\No.08 HomeWork 18-19.js"></script>
+    <script src="ku\HomeWork\No.08 HomeWork 17.js"></script>
+</body>
 </html>
