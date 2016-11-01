@@ -77,14 +77,16 @@ var tanChuang = function(title, mima) {
                 $('.input-mi').each(function(i, e) {
                     e.type = 'text'
                 })
+                location.href = '#'
                 $('.tanChuang').remove()
+                localStorage.tan = 'Hasaki'
             } else {
                 $('#id-tan-input')[0].value = ''
                 $('#id-tan-input')[0].placeholder = '密码错误'
             }
         })
         $('#id-tan-Cancel').on('click', function() {
-            $('.tanChuang').remove()
+            $('#id-tan-input')[0].placeholder = '123'
         })
         $('#id-tan-input').on('keydown', function() {
             if (event.key === 'Enter') {
@@ -92,7 +94,14 @@ var tanChuang = function(title, mima) {
             }
         })
     }
-// tanChuang('你好，是否知道个人档案密钥','123') // 弹窗
+if (localStorage.tan === undefined) {
+    tanChuang('你好，是否知道个人档案密钥','123')
+}
+$('#id-js-tan').on('click', function() {
+    tanChuang('你好，是否知道个人档案密钥','123')
+    $('#id-tan-input')[0].value = '123'
+})
+// 弹窗
 var ckXian = function() {
         var body = document.querySelector('body')
         var style =
