@@ -411,7 +411,7 @@ var comment = function(comments, id) {
                 <textarea id="id-comment-text" maxlength="${words}" placeholder="在此输入评论" rows="4" required></textarea>
                 <div id="id-comment-okay">
                     <span class="pure-button pure-button-disabled">还能输入
-                    <span   id="id-words-left">${words}</span> 个字</span>
+                    <span   id="id-words">${words}</span> 个字</span>
                     <input  id="id-comment-input" type="text" value="匿名" placeholder="昵称" maxlength="10" required>
                     <button id="id-comment-put" class="pure-button">提交评论</button>
                 </div>
@@ -419,14 +419,14 @@ var comment = function(comments, id) {
         </div>
         `
         $('body').append(html)
-        $('.comment-text').on('keyup', function() {
-            var wordsLeft = words - $('#id-comment-text').val().length
-            $('#id-words-left').text(wordsLeft)
+        $('.comment-text').on('keydown', function() {
+            var word = words - $('#id-comment-text').val().length
+            $('#id-words').text(word)
         })
         $('#id-comment-put').on('click', function(event) {
             var user = $('#id-comment-input').val()
             var text = $('#id-comment-text').val()
-            if (user.length > 0 && text.length > 0) {
+            if (user.length >= 0 && text.length > 0) {
                 var ku = {
                     No_: id + 1,
                     name: user,
@@ -449,15 +449,13 @@ var comment = function(comments, id) {
                 comments.push(ku)
                 localStorage.comments = JSON.stringify(comments)
             }
-            event.preventDefault()
-            $('#id-words-left').text(140)
         })
         $('body').on('dblclick', '.message-name', function(event) {
             $(event.target).closest('.message').remove()
             log('comments ID:', event.target.dataset.id)
             $(comments).each(function(i, e) {
                     if (String(e.No_) === event.target.dataset.id) {
-                        comments.splice(i, 1) // 删除 message 并保存 弟弟舔它  <--发现了了不得的注释！
+                        comments.splice(i, 1) // 删除 message 并保存 弟弟舔它
                         localStorage.comments = JSON.stringify(comments)
                     }
                 })
