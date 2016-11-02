@@ -144,6 +144,18 @@ var GuaSlide = function(element, images) {
         xin.fadeIn()
         $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
     })
+    $('.img-button-right').click()
+    var times = setInterval(function() {
+        $('.img-button-right').click()
+    },2000)
+    $('.img').on('mouseover', function() {
+        times = window.clearInterval(times)
+    })
+    $('.img').on('mouseout', function() {
+        times = setInterval(function() {
+            $('.img-button-right').click()
+        },2000)
+    })
 }
 GuaSlide('.HomeWork', [
     "../../imgs/GuaSlide/1.jpg",
