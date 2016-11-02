@@ -94,46 +94,46 @@ var GuaSlide = function(element, images) {
             <span style="display: block; height: 1em"></span>`
     $(element).append(style)
     $(element).append(html)
-    $( '.img' ).on( 'mouseover', function() {
-        $('.img-button').css('display','block')
+    $('.img').on('mouseover', function() {
+        $('.img-button').css('display', 'block')
     })
-    $( '.img' ).on( 'mouseout' , function() {
-        $('.img-button').css('display','none')
+    $('.img').on('mouseout', function() {
+        $('.img-button').css('display', 'none')
     })
     var i = 0 % images.length
-    $('.imgs').each( function(index) {
+    $('.imgs').each(function(index) {
         var jiu = $($('.imgs')[index])
         jiu.fadeOut(0)
         jiu.removeClass('imgs-kai')
-        index =  ( index + 1 ) % images.length
+        index = (index + 1) % images.length
         var xin = $($('.imgs')[index])
         xin.addClass('imgs-kai')
         xin.fadeIn(0)
     })
     $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
-    $( '.img-button-right' ).on( 'click', function() {
+    $('.img-button-right').on('click', function() {
         var jiu = $($('.imgs')[Math.abs(i)])
         jiu.fadeOut()
         jiu.removeClass('imgs-kai')
         $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
-        i =  ( i + 1 ) % images.length
+        i = (i + 1) % images.length
         var xin = $($('.imgs')[Math.abs(i)])
         xin.addClass('imgs-kai')
         xin.fadeIn()
         $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
     })
-    $( '.img-button-left'  ).on( 'click', function() {
+    $('.img-button-left').on('click', function() {
         var jiu = $($('.imgs')[Math.abs(i)])
         jiu.fadeOut()
         jiu.removeClass('imgs-kai')
         $($('.imgs-button')[Math.abs(i)]).removeClass('imgs-button-kai')
-        i =  ( (i - 1) + images.length ) % images.length
+        i = ((i - 1) + images.length) % images.length
         var xin = $($('.imgs')[Math.abs(i)])
         xin.addClass('imgs-kai')
         xin.fadeIn()
         $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
     })
-    $( '.img-bottom'       ).on( 'mouseover', '.imgs-button', function(event) {
+    $('.img-bottom').on('mouseover', '.imgs-button', function(event) {
         var jiu = $($('.imgs')[Math.abs(i)])
         jiu.fadeOut()
         jiu.removeClass('imgs-kai')
@@ -145,7 +145,7 @@ var GuaSlide = function(element, images) {
         $($('.imgs-button')[Math.abs(i)]).addClass('imgs-button-kai')
     })
 }
-GuaSlide('.HomeWork',[
+GuaSlide('.HomeWork', [
     "../../imgs/GuaSlide/1.jpg",
     "../../imgs/GuaSlide/2.jpg",
     "../../imgs/GuaSlide/3.jpg",
@@ -161,18 +161,15 @@ GuaSlide('.HomeWork',[
 //
 // 扩充上课时候做的 slide 库, 添加一个功能, 当鼠标移动到小圆点上的时候, 播放那张图片
 
-
 // 作业 2
 //
 // 扩充上课时候做的 slide 库, 添加一个功能, 当鼠标点击小圆点的时候, 播放那张图片
-
 
 // 作业 3
 //
 // 扩充上课时候做的 slide 库, 添加一个功能
 // 小圆点被一系列缩略图取代
 // 鼠标点击缩略图播放那张图片
-
 
 // 作业 4
 //

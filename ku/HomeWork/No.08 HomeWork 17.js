@@ -15,9 +15,8 @@
 //
 // 需要补全的代码自行解决
 // 作业 17
-
-var chushi = function( ) {
-    var html = `
+var chushi = function() {
+        var html = `
         <div class="content">
             <div class="works"><h2>Works - 用户名检查器</h2></div>
             字母首位；只能包含 字母、数字、下划线；
@@ -35,70 +34,74 @@ var chushi = function( ) {
             <span id="id-OK" style="display: block; height: 2em"></span>
             <span style="display: block; height: 3em"></span>
             </div>`
-    var omg = document.querySelector ( ".HomeWork" )
-    omg.insertAdjacentHTML( 'beforeend', html )
-}
-//初始化
-var isokUesr = function( ) {
-    var result = function(event) {
-        var value = event.target.value
-        if (value === '') {
-            value = '1xiaomi-mix'
-        }
-        log('用户 ',value)
-        var rule1 = value[0].search( /[A-Z]|[a-z]/img )
-        // 1，第一位是字母
-        var rule2 = function() {
-            for (i of value) {
-                if ( i.search( /[A-Z]|[0-9]|_|[a-z]/img ) === -1 ) {
-                    return false
+        var omg = document.querySelector(".HomeWork")
+        omg.insertAdjacentHTML('beforeend', html)
+    }
+    //初始化
+var isokUesr = function() {
+        var result = function(event) {
+                var value = event.target.value
+                if (value !== '') {
+                    log('用户 ', value)
+                    var rule1 = value[0].search(/[A-Z]|[a-z]/img)
+                        // 1，第一位是字母
+                    var rule2 = function() {
+                            for (i of value) {
+                                if (i.search(/[A-Z]|[0-9]|_|[a-z]/img) === -1) {
+                                    return false
+                                }
+                            }
+                            return true
+                        }
+                        // 2，只能包含字母、数字、下划线
+                    var rule3 = value.slice(-1).search(/[0-9]|[A-Z]|[a-z]/img)
+                        // 3，只能字母或数字结尾
+                    var rule45 = value.length < 2 || value.length > 10
+                        // 4，最小长度 2    //5，最大长度 10
+                    var result = true
+                    if (rule1 !== 0) {
+                        log('规则1 不通过')
+                        result = false
+                    }
+                    if (!rule2()) {
+                        log('规则2 不通过')
+                        result = false
+                    }
+                    if (rule3 !== 0) {
+                        log('规则3 不通过')
+                        result = false
+                    }
+                    if (rule45) {
+                        log('规则4 5 不通过')
+                        result = false
+                    }
+                    return result
                 }
-            } return true
+            }
+            //测试函数
+        var Event = function(event) {
+            var omg = document.querySelector('#id-OK')
+            var before = document.querySelector('.class-before')
+            var value = document.querySelector("#id-input-user-name").value
+            if (before !== null) { //前情提要
+                before.remove()
+            }
+            if (value !== '') {
+                if (result(event)) { //如果合格
+                    omg.insertAdjacentHTML('afterend', `<div style="background:lightgreen; color:white" class=" class-before" >用户名　合格</div>`)
+                } else {
+                    omg.insertAdjacentHTML('afterend', `<div style="background:red; color:white" class="class-NO class-before" >用户名　不合格</div>`)
+                }
+            }
         }
-        // 2，只能包含字母、数字、下划线
-        var rule3 = value.slice(-1).search( /[0-9]|[A-Z]|[a-z]/img )
-        // 3，只能字母或数字结尾
-        var rule45 = value.length < 2 || value.length > 10
-        // 4，最小长度 2    //5，最大长度 10
-        var result = true
-        if ( rule1 !== 0 ) {
-            log('规则1 不通过')
-            result = false
-        }
-        if ( !rule2() ) {
-            log('规则2 不通过')
-            result = false
-        }
-        if ( rule3 !== 0 ) {
-            log('规则3 不通过')
-            result = false
-        }
-        if ( rule45 ) {
-            log('规则4 5 不通过')
-            result = false
-        } return result
+        var userName = document.querySelector("#id-input-user-name")
+            // 获取 元素 或 父元素
+        userName.addEventListener('blur', Event, false)
+            // 事件 绑定 或 委托
     }
-    //测试函数
-    var Event = function(event) {
-        var omg = document.querySelector( '#id-OK' )
-        var before = document.querySelector( '.class-before' )
-        if ( before !== null ) { //前情提要
-            before.remove()
-        }
-        if ( result(event) ) {   //如果合格
-            omg.insertAdjacentHTML( 'afterend', `<div style="background:lightgreen; color:white" class=" class-before" >用户名　合格</div>` )
-        } else {
-            omg.insertAdjacentHTML( 'afterend', `<div style="background:red; color:white" class="class-NO class-before" >用户名　不合格</div>` )
-        }
-    }
-    var userName = document.querySelector( "#id-input-user-name" )
-    // 获取 元素 或 父元素
-    userName.addEventListener( 'blur', Event, false )
-    // 事件 绑定 或 委托
-}
-//检查用户名是否合格
+    //检查用户名是否合格
 
-var __init__ = function( ) {
+var __init__ = function() {
     chushi()
     isokUesr()
 }

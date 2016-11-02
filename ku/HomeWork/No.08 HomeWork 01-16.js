@@ -16,14 +16,10 @@
 // 请以之前上课中 string 相关的内容作为参考
 // 请自行编写测试
 //
-
-
 // 定义我们的 log 函数
 // var log = function() {
 //     console.log.apply(console, arguments)
 // }
-
-
 // ======
 // 测试
 // ======
@@ -38,7 +34,6 @@
 //         log('*** 测试失败 {', message)
 //     }
 // }
-
 // 定义一个增强的 ensureEqual
 // var ensure = function( def, result, message ) {
 //     if ( def != result) {
@@ -46,8 +41,6 @@
 //         log(`def = ${def}\nresult = ${result}\n `)
 //         }
 //     }
-
-
 // 作业 1
 // 实现函数
 // delimiter 是 string
@@ -61,12 +54,13 @@ var join = function(delimiter, array) {
     for (var i = 0; i < array.length; i++) {
         result += array[i]
         result += delimiter
-    } return result.slice(0,-1)
+    }
+    return result.slice(0, -1)
 }
 
 var test_join = function() {
-    ensure(join('#' , ['hello', 'gua']) == 'hello#gua', 'join 测试 1')
-    ensure(join(' ' , ['hello', 'gua']) == 'hello gua', 'join 测试 2')
+    ensure(join('#', ['hello', 'gua']) == 'hello#gua', 'join 测试 1')
+    ensure(join(' ', ['hello', 'gua']) == 'hello gua', 'join 测试 2')
     ensure(join('\n', ['multi', 'line', 'string']) == 'multi\nline\nstring', 'join 测试 3')
 }
 test_join()
@@ -88,25 +82,22 @@ var length = function(s, delimiter) {
         }
     }
 }
-var split = function(s, delimiter=' ') {
-    var list  = []
-    var len = length( s, delimiter )
+var split = function(s, delimiter = ' ') {
+    var list = []
+    var len = length(s, delimiter)
     for (i in s) {
         if (s[i] === delimiter) {
-            list.push( s.slice(i - len, i) )
+            list.push(s.slice(i - len, i))
         }
     }
-    list.push( s.slice( -len ) ) //收尾
+    list.push(s.slice(-len)) //收尾
     return list
 }
 var text_split = function() {
-    ensure( JSON.stringify(split('1 2 3 4',' ')     ) === JSON.stringify(['1','2','3','4']) , '测试1')
-    ensure( JSON.stringify(split('a=b&c=d&d=e','&') ) ===  JSON.stringify([ "a=b", "c=d", "d=e" ]), '测试2')
+    ensure(JSON.stringify(split('1 2 3 4', ' ')) === JSON.stringify(['1', '2', '3', '4']), '测试1')
+    ensure(JSON.stringify(split('a=b&c=d&d=e', '&')) === JSON.stringify(["a=b", "c=d", "d=e"]), '测试2')
 }
-
 text_split() //还是不如 str.split( )
-
-
 
 // 作业 3
 // s old newString 都是 string
@@ -116,9 +107,9 @@ var replaceAll = function(s, old, newString) {
     var re = new RegExp(`${old}`, 'g')
     return s.replace(re, `${newString}`)
 }
-var text_replaceAll = function( ) {
-    ensure( replaceAll('国家：中国，中国各省，中国各部，中国各单位','中国','澳大利亚') === "国家：澳大利亚，澳大利亚各省，澳大利亚各部，澳大利亚各单位" ,'测试1')
-    ensure( replaceAll('测试网站www.xicidaili.com','i','爱') === "测试网站www.x爱c爱da爱l爱.com" ,'测试2')
+var text_replaceAll = function() {
+    ensure(replaceAll('国家：中国，中国各省，中国各部，中国各单位', '中国', '澳大利亚') === "国家：澳大利亚，澳大利亚各省，澳大利亚各部，澳大利亚各单位", '测试1')
+    ensure(replaceAll('测试网站www.xicidaili.com', 'i', '爱') === "测试网站www.x爱c爱da爱l爱.com", '测试2')
 }
 text_replaceAll()
 
@@ -131,23 +122,25 @@ text_replaceAll()
 // 3       '12321'
 // 实现函数
 var str1 = function(n) {
-    var range = function( n ) {
+    var range = function(n) {
         var list = ''
         for (var i = 1; i < n + 1; i++) {
             list += i
-        } return list
+        }
+        return list
     }
     var str = range(n)
     var dao = ''
-    for (var i = -2; Math.abs(i) <=  str.length; i-= 1) {
-        dao += str.slice(i, i+1 )
-    } return str + dao
+    for (var i = -2; Math.abs(i) <= str.length; i -= 1) {
+        dao += str.slice(i, i + 1)
+    }
+    return str + dao
 }
 var test_str1 = function() {
-    ensure( str1(4) === '1234321','测试1')
-    ensure( str1(2) === '121','测试2')
-    ensure( str1(9) === "12345678987654321",'测试3')
-    ensure( str1(3) === '12321','测试4')
+    ensure(str1(4) === '1234321', '测试1')
+    ensure(str1(2) === '121', '测试2')
+    ensure(str1(9) === "12345678987654321", '测试3')
+    ensure(str1(3) === '12321', '测试4')
 }
 test_str1()
 
@@ -160,27 +153,28 @@ test_str1()
 // 3       'ABCBA'
 // 实现函数
 var str2 = function(n) {
-    var range = function( n ) {
+    var range = function(n) {
         var zimu = '#ABCDEFGHIJKLMNOPQRSTUVWXYZ'
         var list = ''
         for (var i = 1; i < n + 1; i++) {
             list += zimu[i]
-        } return list
+        }
+        return list
     }
     var str = range(n)
     var dao = ''
-    for (var i = -2; Math.abs(i) <=  str.length; i-= 1) {
-        dao += str.slice(i, i+1 )
-    } return str + dao
+    for (var i = -2; Math.abs(i) <= str.length; i -= 1) {
+        dao += str.slice(i, i + 1)
+    }
+    return str + dao
 }
 var test_str2 = function() {
-    ensure( str2(4) , "ABCDCBA",'测试1')
-    ensure( str2(18), "ABCDEFGHIJKLMNOPQRQPONMLKJIHGFEDCBA",'测试2')
-    ensure( str2(9) , "ABCDEFGHIHGFEDCBA",'测试3')
-    ensure( str2(2) , 'ABA','测试4')
+    ensure(str2(4), "ABCDCBA", '测试1')
+    ensure(str2(18), "ABCDEFGHIJKLMNOPQRQPONMLKJIHGFEDCBA", '测试2')
+    ensure(str2(9), "ABCDEFGHIHGFEDCBA", '测试3')
+    ensure(str2(2), 'ABA', '测试4')
 }
 test_str2()
-
 
 // 作业 6
 // 返回这样格式的加法口诀表(没写全, 但是要返回完整的)
@@ -192,29 +186,31 @@ test_str2()
 //     '3 + 1 = 4  3 + 2 = 5  3 + 3 = 6',
 // ]
 // 实现加法口诀表
-var add = function( n ) {
+var add = function(n) {
     var str = ''
-    for     (var r = 1; r <= n; r++) {
+    for (var r = 1; r <= n; r++) {
         for (var l = 1; l <= n; l++) {
             if (r == n) {
                 str += (`${r} + ${l} = ${l+r}  `)
             }
         }
-    } return str.slice(0,-2)
+    }
+    return str.slice(0, -2)
 }
-var addTable = function( n ) {
+var addTable = function(n) {
     list = []
     for (var i = 1; i <= n; i++) {
-        list.push( add(i) )
-    } return list
+        list.push(add(i))
+    }
+    return list
 }
 var test_addTable = function() {
-    ensure( JSON.stringify( addTable(3) ) , JSON.stringify(
-    [
-        '1 + 1 = 2',
-        '2 + 1 = 3  2 + 2 = 4',
-        '3 + 1 = 4  3 + 2 = 5  3 + 3 = 6',
-    ] ), '测试1' )
+    ensure(JSON.stringify(addTable(3)), JSON.stringify(
+        [
+            '1 + 1 = 2',
+            '2 + 1 = 3  2 + 2 = 4',
+            '3 + 1 = 4  3 + 2 = 5  3 + 3 = 6',
+        ]), '测试1')
 }
 test_addTable() //加法口诀！~可恶
 
@@ -224,38 +220,40 @@ test_addTable() //加法口诀！~可恶
 // 返回一个 array, 假设 start 为 1, end 为 5, 返回数据如下
 // [1, 2, 3, 4]
 // 实现函数
-var range1 = function( start, end ) {
+var range1 = function(start, end) {
     var list = []
     for (var i = start; i < end; i += 2) {
-        list.push( i )
-    } return list
+        list.push(i)
+    }
+    return list
 }
 var test_range1 = function() {
-    ensure( range1(1,5), [1, 2, 3, 4]  ,'测试1')
-    ensure( range1(2,6), [2, 3, 4, 5]  ,'测试2')
-    ensure( range1(0,6), [-2, -1, 0, 1]  ,'测试3')
+    ensure(range1(1, 5), [1, 2, 3, 4], '测试1')
+    ensure(range1(2, 6), [2, 3, 4, 5], '测试2')
+    ensure(range1(0, 6), [-2, -1, 0, 1], '测试3')
 }
 test_range1()
-// 作业 8
-// start end step 都是数字
-// step 是大于 0 的正整数
-//
-// 返回一个 array
-// 假设 start=1, end=5, step=1 返回数据如下
-// [1, 2, 3, 4]
-// 假设 start=0, end=6, step=2 返回数据如下
-// [0, 2, 4]
-// 实现函数
-var range2 = function(start, end, step=1) {
+    // 作业 8
+    // start end step 都是数字
+    // step 是大于 0 的正整数
+    //
+    // 返回一个 array
+    // 假设 start=1, end=5, step=1 返回数据如下
+    // [1, 2, 3, 4]
+    // 假设 start=0, end=6, step=2 返回数据如下
+    // [0, 2, 4]
+    // 实现函数
+var range2 = function(start, end, step = 1) {
     var list = []
     for (var i = start; i < end; i += step) {
-        list.push( i )
-    } return list
+        list.push(i)
+    }
+    return list
 }
 var test_range2 = function() {
-    ensure( range2(1,5,1), [1, 2, 3, 4]  ,'测试1')
-    ensure( range2(2,6,3), [ 2, 5 ]      ,'测试2')
-    ensure( range2(0,6,2), [ 0, 2, 4 ]   ,'测试3')
+    ensure(range2(1, 5, 1), [1, 2, 3, 4], '测试1')
+    ensure(range2(2, 6, 3), [2, 5], '测试2')
+    ensure(range2(0, 6, 2), [0, 2, 4], '测试3')
 }
 test_range2()
 
@@ -270,30 +268,31 @@ test_range2()
 // 假设 start=6, end=0, step=-1 返回数据如下
 // [6, 5, 4, 3, 2, 1]
 // 实现函数
-var range3 = function( start, end, step=1) {
+var range3 = function(start, end, step = 1) {
     if (start < end) {
         kaishi = start
         jieshu = end
         var list = []
         for (var i = kaishi; i < jieshu; i += step) {
-            list.push( i )
-        } return list
-    }else {
+            list.push(i)
+        }
+        return list
+    } else {
         var kaishi = end
         var jieshu = start
         var list = []
         for (var i = kaishi + 1; i <= jieshu; i += step) {
-            list.push( i )
-        } return list.reverse( )
+            list.push(i)
+        }
+        return list.reverse()
     }
 
 }
 var test_range3 = function() {
-    ensure( range3(1,5,1), [1, 2, 3, 4]  ,'测试1')
-    ensure( range3(6,0,1), [ 6, 5, 4, 3, 2, 1 ]    ,'测试3')
+    ensure(range3(1, 5, 1), [1, 2, 3, 4], '测试1')
+    ensure(range3(6, 0, 1), [6, 5, 4, 3, 2, 1], '测试3')
 }
 test_range3()
-
 
 // 作业 10
 // js 标准数学库有一个随机数函数
@@ -306,11 +305,10 @@ var random01 = function() {
     var suiji = Math.random()
     if (suiji > 0.5) {
         return 1
-    }else {
+    } else {
         return 0
     }
 }
-
 
 // 作业 11
 // 返回一个只包含了 0 1 的随机 array, 长度为 n
@@ -321,19 +319,20 @@ var random01 = function() {
     var suiji = Math.random()
     if (suiji > 0.5) {
         return 1
-    }else {
+    } else {
         return 0
     }
 }
 var randomLine01 = function(n) {
-    var i = 0
-    var list = []
-    while (i < n) {
-        list.push( random01() )
-    i++
-    }return list
-}
-//randomLine01(5)
+        var i = 0
+        var list = []
+        while (i < n) {
+            list.push(random01())
+            i++
+        }
+        return list
+    }
+    //randomLine01(5)
 
 // 作业 12
 // 返回以下格式的数据
@@ -351,7 +350,7 @@ var random01 = function() {
     var suiji = Math.random()
     if (suiji > 0.5) {
         return 1
-    }else {
+    } else {
         return 0
     }
 }
@@ -359,19 +358,21 @@ var randomLine01 = function(n) {
     var i = 0
     var list = []
     while (i < n) {
-        list.push( random01() )
-    i++
-    }return list
+        list.push(random01())
+        i++
+    }
+    return list
 }
 var randomSquare01 = function(n) {
-    var list = []
-    var i = 0
-    while (i < n) {
-        list.push( randomLine01(n) )
-    i++
-    } return list
-}
-//randomSquare01(3)
+        var list = []
+        var i = 0
+        while (i < n) {
+            list.push(randomLine01(n))
+            i++
+        }
+        return list
+    }
+    //randomSquare01(3)
 
 // 作业 13
 // 返回一个只包含了 0 9 的随机 array, 长度为 n
@@ -381,19 +382,20 @@ var random09 = function() {
     var suiji = Math.random()
     if (suiji > 0.5) {
         return 9
-    }else {
+    } else {
         return 0
     }
 }
 var randomLine09 = function(n) {
-    var list = []
-    var i = 0
-    while (i < n) {
-        list.push( random09() )
-    i++
-    }return list
-}
-//randomLine09(5)
+        var list = []
+        var i = 0
+        while (i < n) {
+            list.push(random09())
+            i++
+        }
+        return list
+    }
+    //randomLine09(5)
 
 // 作业 14
 // array 是一个只包含了 0 9 的 array
@@ -412,7 +414,7 @@ var random09 = function() {
     var suiji = Math.random()
     if (suiji > 0.5) {
         return 9
-    }else {
+    } else {
         return 0
     }
 }
@@ -420,26 +422,29 @@ var randomLine09 = function(n) {
     var list = []
     var i = 0
     while (i < n) {
-        list.push( random09() )
-    i++
-    }return list
+        list.push(random09())
+        i++
+    }
+    return list
 }
 var markedLine = function(n) {
-    var list = []
-    var array = randomLine09(n) //[0, 0, 9, 0, 9]
-    for (var i = 0; i < array.length; i++) {
-        if (array[i] === 0) {
-            if (array[i + 1] === 9) {
-                array[i] += 1
-            }
-            if (array[i - 1] === 9) {
-                array[i] += 1
-            }
+        var list = []
+        var array = randomLine09(n) //[0, 0, 9, 0, 9]
+        for (var i = 0; i < array.length; i++) {
+            if (array[i] === 0) {
+                if (array[i + 1] === 9) {
+                    array[i] += 1
+                }
+                if (array[i - 1] === 9) {
+                    array[i] += 1
+                }
 
-        }list.push( array[i] )
-    }return list
-}
-// log(markedLine(10))
+            }
+            list.push(array[i])
+        }
+        return list
+    }
+    // log(markedLine(10))
 
 
 // 作业 15
@@ -468,7 +473,7 @@ var random09 = function() {
     var suiji = Math.random()
     if (suiji > 0.5) {
         return 9
-    }else {
+    } else {
         return 0
     }
 }
@@ -476,62 +481,63 @@ var randomLine09 = function(n) {
     var list = []
     var i = 0
     while (i < n) {
-        list.push( random09() )
-    i++
-    }return list
+        list.push(random09())
+        i++
+    }
+    return list
 }
 var markedSquare = function(n) {
     var oldList = []
     var i = 0
     while (i < n) {
-        oldList.push( randomLine09(n) )
+        oldList.push(randomLine09(n))
         i++
     }
     var list = oldList.slice(0)
-    // for ( i in list ) { 有毒
+        // for ( i in list ) { 有毒
     for (var i = 0; i < list.length; i++) {
         // log ( list [i] )
         for (var i2 = 0; i2 < list.length; i2++) {
-        // for ( i2 in list ) { 有毒
+            // for ( i2 in list ) { 有毒
             if (list[i][i2] === 0) {
                 // log(i)
-                if (i-1 >= 0) {
-                    if (list[i-1][i2+1] === 9) { //右上
+                if (i - 1 >= 0) {
+                    if (list[i - 1][i2 + 1] === 9) { //右上
                         list[i][i2] += 1
                     }
-                    if (list[i-1][i2-1] === 9) { //左上
+                    if (list[i - 1][i2 - 1] === 9) { //左上
                         list[i][i2] += 1
                     }
-                    if (list[i-1][i2] === 9) { //上
+                    if (list[i - 1][i2] === 9) { //上
                         // log('上')
                         list[i][i2] += 1
                     }
                 }
-                if (i+1 <= n-1) {
-                    if (list[i+1][i2] === 9) { //下
+                if (i + 1 <= n - 1) {
+                    if (list[i + 1][i2] === 9) { //下
                         list[i][i2] += 1
                     }
-                    if (list[i+1][i2+1] === 9) { //右下
+                    if (list[i + 1][i2 + 1] === 9) { //右下
                         list[i][i2] += 1
                     }
-                    if (list[i+1][i2-1] === 9) { //左下
+                    if (list[i + 1][i2 - 1] === 9) { //左下
                         list[i][i2] += 1
                     }
                 }
-                    if (list[i][i2-1] === 9) { //左
-                        list[i][i2] += 1
-                    }
-                    if (list[i][i2+1] === 9) { //右
-                        list[i][i2] += 1
-                    }
+                if (list[i][i2 - 1] === 9) { //左
+                    list[i][i2] += 1
+                }
+                if (list[i][i2 + 1] === 9) { //右
+                    list[i][i2] += 1
+                }
             }
         }
     }
     return list
 }
-var list = markedSquare (4)
+var list = markedSquare(4)
 for (var i = 0; i < list.length; i++) {
-    log( list[i] )
+    log(list[i])
 }
 
 // 作业 16
@@ -550,47 +556,50 @@ for (var i = 0; i < list.length; i++) {
 // 返回, 包含了 n 个『只包含 n 个「随机 0 9」的 array』的 array, 9 的个数是 limit
 var suiji = function(n) {
     while (true) {
-        var sui = Math.floor( Math.random() * 10 )
+        var sui = Math.floor(Math.random() * 10)
         if (sui < n) {
             return sui
         }
     }
 }
-var lie = function( n ){
+var lie = function(n) {
     var randomLine09 = function(n) {
         var list = []
         var i = 0
         while (i < n) {
-            list.push( 0 )
-        i++
-        } return list
+            list.push(0)
+            i++
+        }
+        return list
     }
     var list = []
     var i = 0
     while (i < n) {
-        list.push( randomLine09(n) )
+        list.push(randomLine09(n))
         i++
-    } return list
+    }
+    return list
 }
-var randomSquare09 = function(n, limit=3) {
+var randomSquare09 = function(n, limit = 3) {
     var list = lie(n)
     var i = 0
     var i9 = '9'
-    while (i < limit ) {
+    while (i < limit) {
         var r = [suiji(n)]
         var y = [suiji(n)]
-        if ( list[r][y] === i9 ) {
+        if (list[r][y] === i9) {
             i--
         }
         list[r][y] = i9
-    i++
-    } return list
+        i++
+    }
+    return list
 }
 
 var test_randomSquare09 = function() {
-    var list = randomSquare09(6,6)
+    var list = randomSquare09(6, 6)
     for (var i = 0; i < list.length; i++) {
-        log( list[i] )
+        log(list[i])
     }
 }
 test_randomSquare09()
