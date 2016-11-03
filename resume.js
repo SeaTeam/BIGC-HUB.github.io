@@ -165,25 +165,26 @@ var comment = function(comments, id) {
         var html = `
         <div class="comment">
             <form class="comment-text pure-form">
-                <textarea id="id-comment-text" maxlength="${words}" placeholder="在此输入评论" rows="4" required></textarea>
+                <textarea id="id-comment-text" maxlength="${words}" placeholder="在此输入评论" rows="4" required="required"></textarea>
                 <div id="id-comment-okay">
                     <span class="pure-button pure-button-disabled">还能输入
                     <span   id="id-words">${words}</span> 个字</span>
-                    <input  id="id-comment-input" type="text" value="匿名" placeholder="昵称" maxlength="10" required>
-                    <button id="id-comment-put" class="pure-button">提交评论</button>
+                    <input  id="id-comment-user" type="text" placeholder="昵称" maxlength="10" required="required">
+                    <button id="id-comment-put" type="submit" class="pure-button">提交评论</button>
                 </div>
             </form>
-        </div>
-        `
+            </div>
+            `
         $('body').append(html)
         $('.comment-text').on('keydown', function() {
             var word = words - $('#id-comment-text').val().length
             $('#id-words').text(word)
         })
         $('#id-comment-put').on('click', function(event) {
-            var user = $('#id-comment-input').val()
-            var text = $('#id-comment-text').val()
-            if (user.length >= 0 && text.length > 0) {
+            var user = $('#id-comment-user')[0].value
+            var text = $('#id-comment-text')[0].value
+            var text = text.replace( /\n/mg, "<br>" )
+            if (user.length > 0 && text.length > 0) {
                 var ku = {
                     No_: id + 1,
                     name: user,
@@ -191,14 +192,13 @@ var comment = function(comments, id) {
                     message: text
                 }
                 id = ku.No_
-                log(id)
                 var temp = `
                 <div class="message">
                     <div class="message-time">
                         <button data-id="${ku.No_}" class="message-name pure-button">${ku.name} 评论于 ${ku.date}</button>
                     </div>
                     <div class="message-cont">
-                        ${ku.message}
+                        <p>${ku.message}</p>
                     </div>
                 </div>`
                 $('.comment-text').after(temp)
@@ -225,7 +225,7 @@ var comment = function(comments, id) {
                     <button data-id="${i.No_}" class="message-name pure-button">${i.name} 评论于 ${i.date}</button>
                 </div>
                 <div class="message-cont">
-                    ${i.message}
+                    <P>${i.message}</p>
                 </div>
             </div>`
             $('.comment-text').after(temp)
