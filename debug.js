@@ -29,13 +29,17 @@ var ckXian = function(mc) {
     }
 ckXian('*')
 // 定义 log enSure
-
 $('#id-top').on('mouseover', function() {
-    $('.top').fadeIn()
+    $('.top').fadeIn(618)
 })
 $('.top').on('click', function() {
-    $('.search').slideToggle(1000)
-    setTimeout("$('.engine').slideToggle(1000)", 1000)
+    if ($('.search').css("display") !== 'none') {
+        $('.search').slideUp(618)
+        setTimeout("$('.engine').slideDown(618)", 618)
+    } else {
+        $('.engine').slideUp(618)
+        setTimeout("$('.search').slideDown(618)", 618)
+    }
 })
 // 绑定 导航
 var engine = [
@@ -52,8 +56,8 @@ var engine = [
         url:`http://cn.bing.com/search?q=`,
     },{
         id:3,
-        name:'百度',
-        url:`http://www.baidu.com/#ie={inputEncoding}&wd=`,
+        name:'知乎',
+        url:`http://www.zhihu.com/search?q=`,
     },{
         id:4,
         name:'微信',
@@ -64,17 +68,17 @@ var engine = [
         url:`http://baike.baidu.com/item/`,
     },
 ]
-$(engine).each( function(i,e) {
-    if (i > 0) {
-        var temp = `<engine data-id=${e.id}>${e.name}</engine>`
+for (i of engine) {
+    if (i.id > 0) {
+        var temp = `<engine data-id=${i.id}>${i.name}</engine>`
         $('.engine-init').append(temp)
     }
-})
+}
 // 初始化 引擎
-$('.search-button').on('click', function() {
-    var input = $('.search-input')
-    var value = input.val()
-    var id    = input.data('id')
+$('.search-button').on('click',   function() {
+    var input = $('.search-input')[0]
+    var value = input.value
+    var id    = Number(input.dataset.id)
     for (i of engine) {
         if (i.id === id) {
             var url = i.url + value
@@ -82,10 +86,12 @@ $('.search-button').on('click', function() {
     }
     if (value !== '') {
         window.open( url )
+    } else {
+        $('.search-input').focus()
     }
 })
 $('.search-input' ).on('keydown', function() {
-    if (event.key === 'Enter') {
+    if (event.keyCode === 13) {
         $('.search-button').click()
     }
 })
@@ -97,3 +103,4 @@ $('.engine-init').on('click', 'engine', function(event) {
     input.placeholder = $(event.target).text()
     $('#id-top-button').click()
 })
+// 引擎 按钮
