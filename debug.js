@@ -1,3 +1,4 @@
+// 定义 log enSure
 var log = function() {
         console.log.apply(console, arguments)
     }
@@ -28,7 +29,7 @@ var ckXian = function(mc) {
         })
     }
 ckXian('*')
-// 定义 log enSure
+// 绑定 导航
 $('#id-top').on('mouseover', function() {
     $('.top').fadeIn(618)
 })
@@ -41,7 +42,7 @@ $('.top').on('click', function() {
         setTimeout("$('.search').slideDown(618)", 618)
     }
 })
-// 绑定 导航
+// 初始化 引擎
 var engine = [
     {id:0,
         name:'搜狗',
@@ -74,7 +75,7 @@ for (i of engine) {
         $('.engine-init').append(temp)
     }
 }
-// 初始化 引擎
+// 搜索 按钮
 $('.search-button').on('click',   function() {
     var input = $('.search-input')[0]
     var value = input.value
@@ -90,7 +91,7 @@ $('.search-button').on('click',   function() {
         $('.search-input').focus()
     }
 })
-// 搜索 按钮
+// 引擎 按钮
 $('.engine-init').on('click', 'engine', function(event) {
     var id = event.target.dataset.id
     var input = $('.search-input')[0]
@@ -98,12 +99,12 @@ $('.engine-init').on('click', 'engine', function(event) {
     input.placeholder = $(event.target).text()
     $('#id-top-button').click()
 })
-// 引擎 按钮
+// 智能提示
 var so = {
     gou: function(content) {
         //组装 URL
-        var sugurl = "https://www.sogou.com/suggnew/ajajjson?type=web&key=#content#"
-        sugurl = sugurl.replace("#content#", content)
+        var data = encodeURI(content)
+        var sugurl = `https://www.sogou.com/suggnew/ajajjson?type=web&key=${data}`
         //回调函数
         window.sogou = { sug: function(json){so.sug = json[1]} }
         //动态 JS脚本
@@ -114,13 +115,36 @@ var so = {
     sug:[],
 }
 $('.search-input').on('keyup', function() {
+    // log(event.keyCode)
     if (event.keyCode === 13) {
         $('.search-button').click()
+    } else if (event.keyCode === 40) {
+        log('下')
     } else {
+        $('.search-li').remove()
         so.gou(event.target.value)
-        log(so.sug)
+        if(so.sug.length === 0) {
+            $('.search-list').css('border-color','transparent')
+        } else {
+            $('.search-list').css('border-color','#037dd8')
+            for (i of so.sug) {
+                $('.search-list').prepend(`<div class="search-li">${i}</div>`)
+            }
+        }
     }
 })
-// 1. 搜索引擎预加载
-
+$('.search-input').on('blur', function() {
+    $('.search-li').remove()
+    $('.search-list').css('border-color','transparent')
+})
+$('.search-input').on('focus', function() {
+    if(so.sug.length === 0) {
+        $('.search-list').css('border-color','transparent')
+    } else {
+        $('.search-list').css('border-color','#037dd8')
+        for (i of so.sug) {
+            $('.search-list').prepend(`<div class="search-li">${i}</div>`)
+        }
+    }
+})
 // 2. engine自动排序 和 添加/删除 功能engine

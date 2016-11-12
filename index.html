@@ -49,14 +49,14 @@
             }
             .search-center {
                 position:relative;
-                top: 10.2%;
-                transform: translateY(50%);
+                top: 61.8%;
+                transform: translateY(-50%);
             }
             .search-input {
                 margin-right: -0.26em;
                 padding: 0.4em;
                 width: 38.2%;
-                border: 0.034em solid rgba(0,0,0,0.25);
+                border: 1px solid rgba(0,0,0,0.25);
                 border-top-left-radius: 2px;
                 border-top-right-radius: 0;
                 border-bottom-right-radius: 0;
@@ -64,15 +64,15 @@
                 outline: 0;
             }
             .search-input:hover {
-                border: 0.034em solid rgba(0,0,0,0.4);
+                border: 1px solid rgba(0,0,0,0.4);
             }
             .search-input:focus {
-                border: 0.034em solid #037dd8;
+                border: 1px solid #037dd8;
             }
             .search-button {
                 padding: 0.4em;
                 width: 3.8em;
-                border: 0.034em solid #037dd8;
+                border: 1px solid #037dd8;
                 border-top-left-radius: 0;
                 border-top-right-radius: 2px;
                 border-bottom-right-radius: 2px;
@@ -86,31 +86,39 @@
                 cursor: pointer;
             }
             .search-list {
+                height: 17em;
                 text-align: justify;
                 margin: 0 auto;
                 display: inline-block;
-                /*position: absolute;
-                width: 50%;
-                left: 50%;
-                margin-left: -25%;*/
                 padding: 0.4em;
                 width: 38.2%;
                 outline: 0;
-                border: 0.034em solid #037dd8;
+                border: 1px solid transparent;
                 border-top: 0;
+                margin-right: -0.26em;
             }
             .search-li {
-                padding: 0.2em;
+                padding: 0.1em;
                 white-space: nowrap;        /* 禁止 换行 */
                 overflow:hidden;            /* 隐藏 超出部分 */
                 text-overflow: ellipsis;    /* 省略号 替代 */
             }
+            .search-li:hover {
+                cursor: pointer;
+                background: #037dd8;
+                color: #fff;
+            }
+            #id-search-li {
+                padding: 0.1em;
+                text-align: right;
+                color: transparent; /* #037dd8 */
+            }
             .search-list-button {
                 width: 3.88em;
-                border: 0;
                 outline: 0;
                 background: transparent; /* 透明 */
                 color: transparent;
+                border: 2px solid transparent;
             }
             </style>
         <!-- 引擎 -->
@@ -147,11 +155,15 @@
             engine:hover {
                 border: 2px solid #389CFF;
                 border-radius: 2px;
+                background: #F5F6F9;
+            }
+            engine:active {
+                border-color: #F5F6F9;
             }
             </style>
     </head>
     <body>
-        <span id="id-Sug"></span>
+        <div id="id-Sug"></div>
         <!-- 导航 -->
         <div class="top">
             <div class="top-center">
@@ -163,24 +175,14 @@
             <span id="id-top" style='display:block; height:3em;'></span>
         <!-- 搜索 -->
         <div class="search">
-
             <div class="search-center">
                 <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
                 <button class="search-button">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
-                <br>
+                <div></div>
                 <div class="search-list">
-                    <div class="search-li">大海</div>
-                    <div class="search-li">大海图片</div>
-                    <div class="search-li">大海解说我的世界</div>
-                    <div class="search-li">大海解说</div>
-                    <div class="search-li">大海鱼棠 大鱼海棠</div>
-                    <div class="search-li">大海啸之鲨口逃生</div>
-                    <div class="search-li">大海解说我的世界钻石大陆</div>
-                    <div class="search-li">大海啸</div>
-                    <div class="search-li">大海航行靠舵手</div>
-                    <div class="search-li">大海歌词</div>
+                    <div id="id-search-li"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></div>
                 </div>
                 <button class="search-list-button">
                     <i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i>
