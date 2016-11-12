@@ -49,7 +49,7 @@
             }
             .search-center {
                 position:relative;
-                top: 38.2%;
+                top: 10.2%;
                 transform: translateY(50%);
             }
             .search-input {
@@ -84,6 +84,33 @@
             .search-button:hover {
                 box-shadow: 0 1px 4px rgba(0,0,0,0.4);
                 cursor: pointer;
+            }
+            .search-list {
+                text-align: justify;
+                margin: 0 auto;
+                display: inline-block;
+                /*position: absolute;
+                width: 50%;
+                left: 50%;
+                margin-left: -25%;*/
+                padding: 0.4em;
+                width: 38.2%;
+                outline: 0;
+                border: 0.034em solid #037dd8;
+                border-top: 0;
+            }
+            .search-li {
+                padding: 0.2em;
+                white-space: nowrap;        /* 禁止 换行 */
+                overflow:hidden;            /* 隐藏 超出部分 */
+                text-overflow: ellipsis;    /* 省略号 替代 */
+            }
+            .search-list-button {
+                width: 3.88em;
+                border: 0;
+                outline: 0;
+                background: transparent; /* 透明 */
+                color: transparent;
             }
             </style>
         <!-- 引擎 -->
@@ -124,6 +151,7 @@
             </style>
     </head>
     <body>
+        <span id="id-Sug"></span>
         <!-- 导航 -->
         <div class="top">
             <div class="top-center">
@@ -135,10 +163,27 @@
             <span id="id-top" style='display:block; height:3em;'></span>
         <!-- 搜索 -->
         <div class="search">
+
             <div class="search-center">
                 <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
                 <button class="search-button">
                     <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+                <br>
+                <div class="search-list">
+                    <div class="search-li">大海</div>
+                    <div class="search-li">大海图片</div>
+                    <div class="search-li">大海解说我的世界</div>
+                    <div class="search-li">大海解说</div>
+                    <div class="search-li">大海鱼棠 大鱼海棠</div>
+                    <div class="search-li">大海啸之鲨口逃生</div>
+                    <div class="search-li">大海解说我的世界钻石大陆</div>
+                    <div class="search-li">大海啸</div>
+                    <div class="search-li">大海航行靠舵手</div>
+                    <div class="search-li">大海歌词</div>
+                </div>
+                <button class="search-list-button">
+                    <i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i>
                 </button>
             </div>
         </div>
@@ -154,7 +199,6 @@
                 正在施工
             </div>
         </div>
-
         <script src="ku/jQuery.js" charset="utf-8"></script>
         <script src="debug.js" charset="utf-8"></script>
     </body>

@@ -90,11 +90,6 @@ $('.search-button').on('click',   function() {
         $('.search-input').focus()
     }
 })
-$('.search-input' ).on('keydown', function() {
-    if (event.keyCode === 13) {
-        $('.search-button').click()
-    }
-})
 // 搜索 按钮
 $('.engine-init').on('click', 'engine', function(event) {
     var id = event.target.dataset.id
@@ -104,3 +99,28 @@ $('.engine-init').on('click', 'engine', function(event) {
     $('#id-top-button').click()
 })
 // 引擎 按钮
+var so = {
+    gou: function(content) {
+        //组装 URL
+        var sugurl = "https://www.sogou.com/suggnew/ajajjson?type=web&key=#content#"
+        sugurl = sugurl.replace("#content#", content)
+        //回调函数
+        window.sogou = { sug: function(json){so.sug = json[1]} }
+        //动态 JS脚本
+        var temp =  `<script src=${sugurl}></script>`
+        $("#id-Sug").html(temp)
+        //http://www.cnblogs.com/woider/p/5805248.html
+    },
+    sug:[],
+}
+$('.search-input').on('keyup', function() {
+    if (event.keyCode === 13) {
+        $('.search-button').click()
+    } else {
+        so.gou(event.target.value)
+        log(so.sug)
+    }
+})
+// 1. 搜索引擎预加载
+
+// 2. engine自动排序 和 添加/删除 功能engine
