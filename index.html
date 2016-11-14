@@ -1,209 +1,240 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <title>海纳百川 - 大海</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- <link href="https://netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"> -->
-        <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
-        <!-- 全局 -->
-        <style>
-            /* 字体栈 */
-            html,button,input,select,textarea,.pure-g [class *="pure-u"] {
-                font-size: 1.17em;
-                color: #333;
-                font-family:
-                Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
-            }
-            /* 固定式 */
-            body {
-                margin: 0;
-                text-align: center;
-            }
-            </style>
-        <!-- 导航 -->
-        <style>
-            .top {
-                display: none;
-                position: fixed;
-                width: 100%;
-                height: 3em;
-                z-index: 1;
-                background: #F5F6F9;
-                border-bottom: 1px solid #E6E7EC;
-            }
-            .top-center {
-                position:relative;
-                top: 1.5em;
-                transform: translateY(-50%);
-            }
-            </style>
-        <!-- 搜索 -->
-        <style>
-            .search {
-                z-index: -1;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-            .search-center {
-                position:relative;
-                top: 61.8%;
-                transform: translateY(-50%);
-            }
-            .search-input {
-                margin-right: -0.26em;
-                padding: 0.4em;
-                width: 38.2%;
-                border: 1px solid rgba(0,0,0,0.25);
-                border-top-left-radius: 2px;
-                border-top-right-radius: 0;
-                border-bottom-right-radius: 0;
-                border-bottom-left-radius: 2px;
-                outline: 0;
-            }
-            .search-input:hover {
-                border: 1px solid rgba(0,0,0,0.4);
-            }
-            .search-input:focus {
-                border: 1px solid #037dd8;
-            }
-            .search-button {
-                padding: 0.4em;
-                width: 3.8em;
-                border: 1px solid #037dd8;
-                border-top-left-radius: 0;
-                border-top-right-radius: 2px;
-                border-bottom-right-radius: 2px;
-                border-bottom-left-radius: 0;
-                outline: 0;
-                background: #037dd8;
-                color: white;
-            }
-            .search-button:hover {
-                box-shadow: 0 1px 4px rgba(0,0,0,0.4);
-                cursor: pointer;
-            }
-            .search-list {
-                height: 17em;
-                text-align: justify;
-                margin: 0 auto;
-                display: inline-block;
-                padding: 0.4em;
-                width: 38.2%;
-                outline: 0;
-                border: 1px solid transparent;
-                border-top: 0;
-                margin-right: -0.26em;
-            }
-            .search-li {
-                padding: 0.1em;
-                white-space: nowrap;        /* 禁止 换行 */
-                overflow:hidden;            /* 隐藏 超出部分 */
-                text-overflow: ellipsis;    /* 省略号 替代 */
-            }
-            .search-li-hover {
-                cursor: pointer;
-                background: #037dd8;
-                color: #fff;
-            }
-            .search-space {
-                padding: 0.1em;
-                text-align: right;
-                color: transparent; /* #037dd8 */
-            }
-            .search-list-button {
-                width: 3.88em;
-                outline: 0;
-                background: transparent; /* 透明 */
-                color: transparent;
-                border: 2px solid transparent;
-            }
-            </style>
-        <!-- 引擎 -->
-        <style>
-            .engine {
-                display: none;
-                width: 85%;
-                margin: 0 auto;
-            }
-            .engine-often {
-                border-bottom: 1px solid #D5D7DF;
-            }
-            .engine-design {
-                height: 4em;
-            }
-            .engine-coding {
-                height: 4em;
-            }
-            engine {
-                width: 8em;
-                height: 2.5em;
-                display: inline-block;
-                margin: 1em;
-                padding: 0.5em;
-                white-space: nowrap;        /* 禁止 换行 */
-                overflow:hidden;            /* 隐藏 超出部分 */
-                text-overflow: ellipsis;    /* 省略号 替代 */
-                box-sizing: border-box;
-                box-shadow: 0 0.1em 0.2em rgba(15,32,66,.05);
-                cursor: pointer;
-                border: 2px solid transparent;
-                border-radius: 2px;
-            }
-            engine:hover {
-                border: 2px solid #389CFF;
-                border-radius: 2px;
-                background: #F5F6F9;
-            }
-            engine:active {
-                border-color: #F5F6F9;
-            }
-            </style>
-    </head>
-    <body>
-        <div id="id-Sug"></div>
-        <!-- 导航 -->
-        <div class="top">
-            <div class="top-center">
-                <div class="top-girds">
-                    <i id="id-top-button" class="fa fa-angle-double-down fa-lg"></i>
-                </div>
+<head>
+    <meta charset="utf-8">
+    <title>海纳百川 - 大海</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- 全局 -->
+    <style>
+        /* 字体栈 */
+
+        html,
+        button,
+        input,
+        select,
+        textarea,
+        .pure-g [class *="pure-u"] {
+            font-size: 1.17em;
+            color: #333;
+            font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
+        }
+        /* 固定式 */
+
+        body {
+            margin: 0;
+            text-align: center;
+        }
+        </style>
+    <!-- 导航 -->
+    <style>
+        .top {
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 3em;
+            z-index: 1;
+            background: #F5F6F9;
+            border-bottom: 1px solid #E6E7EC;
+        }
+
+        .top-center {
+            position: relative;
+            top: 1.5em;
+            transform: translateY(-50%);
+        }
+        </style>
+    <!-- 搜索 -->
+    <style>
+        .search {
+            z-index: -1;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .search-center {
+            position: relative;
+            top: 61.8%;
+            transform: translateY(-50%);
+        }
+
+        .search-input {
+            margin-right: -0.26em;
+            padding: 0.4em;
+            width: 38.2%;
+            border: 1px solid rgba(0, 0, 0, 0.25);
+            border-top-left-radius: 2px;
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 2px;
+            outline: 0;
+        }
+
+        .search-input:hover {
+            border: 1px solid rgba(0, 0, 0, 0.4);
+        }
+
+        .search-input:focus {
+            border: 1px solid #037dd8;
+        }
+
+        .search-button {
+            padding: 0.4em;
+            width: 3.8em;
+            border: 1px solid #037dd8;
+            border-top-left-radius: 0;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+            border-bottom-left-radius: 0;
+            outline: 0;
+            background: #037dd8;
+            color: white;
+        }
+
+        .search-button:hover {
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+            cursor: pointer;
+        }
+
+        .search-list {
+            height: 17em;
+            text-align: justify;
+            margin: 0 auto;
+            display: inline-block;
+            padding: 0.4em;
+            width: 38.2%;
+            outline: 0;
+            border: 1px solid transparent;
+            border-top: 0;
+            margin-right: -0.26em;
+        }
+
+        .search-li {
+            padding: 0.1em;
+            white-space: nowrap;
+            /* 禁止 换行 */
+            overflow: hidden;
+            /* 隐藏 超出部分 */
+            text-overflow: ellipsis;
+            /* 省略号 替代 */
+        }
+
+        .search-li-hover {
+            cursor: pointer;
+            background: #037dd8;
+            color: #fff;
+        }
+
+        .search-space {
+            padding: 0.1em;
+            text-align: right;
+            color: transparent;
+            /* #037dd8 */
+        }
+
+        .search-list-button {
+            width: 3.88em;
+            outline: 0;
+            background: transparent;
+            /* 透明 */
+            color: transparent;
+            border: 2px solid transparent;
+        }
+        </style>
+    <!-- 引擎 -->
+    <style>
+        .engine {
+            display: none;
+            width: 85%;
+            margin: 0 auto;
+        }
+
+        .engine-often {
+            border-bottom: 1px solid #D5D7DF;
+        }
+
+        .engine-design {
+            height: 4em;
+        }
+
+        .engine-coding {
+            height: 4em;
+        }
+
+        engine {
+            width: 8em;
+            height: 2.5em;
+            display: inline-block;
+            margin: 1em;
+            padding: 0.5em;
+            /* 禁止 换行 */
+            white-space: nowrap;
+            /* 隐藏 超出部分 */
+            overflow: hidden;
+            /* 省略号 替代 */
+            text-overflow: ellipsis;
+            box-sizing: border-box;
+            box-shadow: 0 0.1em 0.2em rgba(15, 32, 66, .05);
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 2px;
+        }
+
+        engine:hover {
+            border: 2px solid #389CFF;
+            border-radius: 2px;
+            background: #F5F6F9;
+        }
+
+        engine:active {
+            border-color: #F5F6F9;
+        }
+        </style>
+</head>
+<body>
+    <div id="id-Sug"></div>
+    <!-- 导航 -->
+    <div class="top">
+        <div class="top-center">
+            <div class="top-girds">
+                <i id="id-top-button" class="fa fa-angle-double-down fa-lg"></i>
             </div>
-            </div>
-            <span id="id-top" style='display:block; height:3em;'></span>
-        <!-- 搜索 -->
-        <div class="search">
-            <div class="search-center">
-                <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
-                <button class="search-button">
+        </div>
+        </div>
+        <span id="id-top" style='display:block; height:3em;'></span>
+    <!-- 搜索 -->
+    <div class="search">
+        <div class="search-center">
+            <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
+            <button class="search-button">
                     <i class="fa fa-search" aria-hidden="true"></i>
                 </button>
-                <div></div>
-                <div class="search-list">
-                    <div class="search-space"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></div>
-                </div>
-                <button class="search-list-button">
-                    <i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i>
+            <div></div>
+            <div class="search-list">
+                <div class="search-space"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></div>
+            </div>
+            <button class="search-list-button">
+                    <i class="fa fa-angle-double-down fa-lg" aria-hidden="true"></i>
                 </button>
-            </div>
         </div>
-        <!-- 引擎 -->
-        <div class="engine">
-            <div class="engine-often">
+    </div>
+    <!-- 引擎 -->
+    <div class="engine">
+        <div class="engine-often">
 
-            </div>
-            <div class="engine-design">
-
-            </div>
-            <div class="engine-coding">
-                正在施工
-            </div>
         </div>
-        <!-- <script src="https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js" charset="utf-8"></script> -->
-        <script src="ku/jQuery.js" charset="utf-8"></script>
-        <script src="debug.js" charset="utf-8"></script>
-    </body>
+        <div class="engine-design">
+
+        </div>
+        <div class="engine-coding">
+            正在施工
+        </div>
+    </div>
+    <!-- 代码 -->
+    <script src="ku/jQuery.js" charset="utf-8"></script>
+    <script src="debug.js" charset="utf-8"></script>
+</body>
 </html>
