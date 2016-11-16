@@ -29,89 +29,149 @@ var ckXian = function(mc) {
     })
 }
 ckXian('*')
-    // 绑定 导航
-$('#id-top').on('mouseover', function() {
+// 绑定 导航
+$('logo').on('click', function() {
     $('.top').fadeIn(618)
+    $('.search').slideUp(618)
+    setTimeout("$('.engine').slideDown(618)", 618)
 })
 $('.top').on('click', function() {
-        if ($('.search').css("display") !== 'none') {
-            $('.search').slideUp(618)
-            setTimeout("$('.engine').slideDown(618)", 618)
-        } else {
-            $('.engine').slideUp(618)
-            setTimeout("$('.search').slideDown(618)", 618)
-        }
-    })
-    // 初始化 引擎
+    $('.top').fadeOut(618)
+    $('.engine').slideUp(618)
+    setTimeout("$('.search').slideDown(618)", 618)
+})
+// 初始化 引擎
 var engine = {
-    all: [{
+    All: [{
         id: 0,
         name: '',
+        icon: 'dahai',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
     }, {
         id: 1,
         name: '搜狗',
+        icon: 'sogou',
         url: `http://www.sogou.com/web?ie={inputEncoding}&query=`,
     }, {
         id: 2,
         name: '必应',
+        icon: 'bing',
         url: `http://cn.bing.com/search?q=`,
     }, {
         id: 3,
         name: '知乎',
+        icon: 'zhihu',
         url: `http://zhihu.sogou.com/zhihu?query=`,
     }, {
         id: 4,
         name: '微信',
+        icon: 'weixin',
         url: `http://weixin.sogou.com/weixin?type=2&query=`,
     }, {
         id: 5,
         name: '百度百科',
+        icon: 'baidu',
         url: `http://baike.baidu.com/item/`,
     }, {
         id: 6,
         name: '网易云音乐',
+        icon: 'cloud-music',
         url: `http://music.163.com/#/search/m/?s=`,
     }, {
         id: 7,
         name: 'w3school',
+        icon: undefined,
         url: `http://cn.bing.com/search?q=site:w3school.com.cn+`,
     }, {
         id: 8,
         name: '片源网',
+        icon: undefined,
         url: `http://pianyuan.net/search?q=`,
     }, {
         id: 9,
-        name: '有道翻译',
+        name: '有道词典',
+        icon: 'youdao',
         url: `http://dict.youdao.com/w/`,
+    }, {
+        id: 10,
+        name: '淘宝',
+        icon: 'taobao',
+        url: `https://s.taobao.com/search?q=`,
+    }, {
+        id: 11,
+        name: '马蜂窝',
+        icon: undefined,
+        url: `http://www.mafengwo.cn/group/s.php?q=`,
+    }, {
+        id: 12,
+        name: '优酷',
+        icon: 'youku',
+        url: `http://www.soku.com/search_video/q_`,
+    }, {
+        id: 13,
+        name: '豆瓣电影',
+        icon: 'douban',
+        url: `https://movie.douban.com/subject_search?search_text=`,
+    }, {
+        id: 14,
+        name: '澎湃新闻',
+        icon: undefined,
+        url: `http://www.thepaper.cn/searchResult.jsp?inpsearch=`,
+    }, {
+        id: 15,
+        name: '高德地图',
+        icon: 'amap',
+        url: `http://ditu.amap.com/search?query=`,
     },
+    //搜索引擎
     ],
-    id: 0,
+    Default: 0,
 }
-for (i of engine.all) {
-    if (i.id > 0) {
-        var temp = `<engine data-id=${i.id}>${i.name}</engine>`
+for (i of engine.All) {
+    if (i.id > 0 && i.id < 6) {
+        if (i.icon !== undefined) {
+            var temp = `<engine data-id=${i.id}> <i class="iconfont icon-${i.icon}"></i> </engine>`
+        } else {
+            var temp = `<engine data-id=${i.id}>${i.name}</engine>`
+        }
         $('.engine-often').append(temp)
     }
-    if (i.id === engine.id) {
+    if (i.id === engine.Default) {
         var input = $('.search-input')[0]
         input.dataset.id = i.id
-        input.placeholder = i.name
+        if (i.icon !== undefined) {
+            input.placeholder = i.name
+            $('logo').html(`<i class="iconfont icon-${i.icon}"></i>`)
+        } else {
+            $('logo').html(i.name)
+        }
     }
 }
 // 搜索 按钮
 $('.search-button').on('click', function() {
         so.search()
     })
-    // 引擎 按钮
+// 引擎 按钮
 $('.engine-often').on('click', 'engine', function(event) {
-        var id = event.target.dataset.id
-        var input = $('.search-input')[0]
-        input.dataset.id = id
-        input.placeholder = $(event.target).text()
-        $('#id-top-button').click()
-    })
-    // 智能提示
+    var id = Number(event.target.parentElement.dataset.id)
+    if (!id) {
+        id = Number(event.target.dataset.id)
+    }
+    var input = $('.search-input')[0]
+    for (i of engine.All) {
+        if (i.id === id) {
+            input.dataset.id = i.id
+            if (i.icon !== undefined) {
+                input.placeholder = i.name
+                $('logo').html(`<i class="iconfont icon-${i.icon}"></i>`)
+            } else {
+                $('logo').html(i.name)
+            }
+        }
+    }
+    $('.top').click()
+})
+// 智能提示
 var so = {
     search: function(value) {
         var input = $('.search-input')[0]
@@ -119,7 +179,7 @@ var so = {
         if (value === undefined) {
             var value = input.value
         }
-        for (i of engine.all) {
+        for (i of engine.All) {
             if (i.id === id) {
                 var url = i.url + value
             }
@@ -224,4 +284,4 @@ $('.search-input').on('focus', function() {
             $('.search-li').show()
         }
     })
-    // 2. engine自动排序 和 添加/删除 功能engine
+// 2. engine自动排序 和 添加/删除 功能engine

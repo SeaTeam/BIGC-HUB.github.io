@@ -5,24 +5,28 @@
     <title>海纳百川 - 大海</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="ku/iconFont/iconfont.css" rel="stylesheet">
     <!-- 全局 -->
     <style>
         /* 字体栈 */
-
-        html,
-        button,
-        input,
-        select,
-        textarea,
+        html,button,input,select,textarea,
         .pure-g [class *="pure-u"] {
-            font-size: 1.17em;
             color: #333;
+            font-size: 1.17em;
             font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
         }
-        /* 固定式 */
-
+        /* 字体库 */
+        .iconfont {
+            font-size: 5.5em;
+            color: #E6E7EC;
+        }
+        .icon-baidu  { color: rgb(35,25,220); }
+        .icon-weixin { color: rgb(0,188,12); }
+        .icon-zhihu  { color: rgb(15,136,235); }
+        .icon-bing   { color: rgb(255,185,0); }
+        .icon-sogou  { color: #fd6853;}
         body {
-            margin: 0;
+            margin: 0 auto;
             text-align: center;
         }
         </style>
@@ -36,8 +40,8 @@
             z-index: 1;
             background: #F5F6F9;
             border-bottom: 1px solid #E6E7EC;
+            cursor: pointer;
         }
-
         .top-center {
             position: relative;
             top: 1.5em;
@@ -46,6 +50,21 @@
         </style>
     <!-- 搜索 -->
     <style>
+        logo {
+            display: block;
+            margin: 0 auto 2em;
+            width:  8em;
+            height: 8em;
+            line-height: 8em;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            cursor: pointer;
+
+            border: 1px solid #E6E7EC;
+            border-radius: 50%;
+        }
         .search {
             z-index: -1;
             position: fixed;
@@ -54,17 +73,16 @@
             width: 100%;
             height: 100%;
         }
-
         .search-center {
             position: relative;
             top: 61.8%;
-            transform: translateY(-50%);
+            transform: translateY(-61.8%);
         }
-
+        /* 输入框 */
         .search-input {
             margin-right: -0.26em;
             padding: 0.4em;
-            width: 38.2%;
+            width: 38.2%;  /*width: 61.8%;*/
             border: 1px solid rgba(0, 0, 0, 0.25);
             border-top-left-radius: 2px;
             border-top-right-radius: 0;
@@ -72,15 +90,12 @@
             border-bottom-left-radius: 2px;
             outline: 0;
         }
-
         .search-input:hover {
             border: 1px solid rgba(0, 0, 0, 0.4);
         }
-
         .search-input:focus {
             border: 1px solid #037dd8;
         }
-
         .search-button {
             padding: 0.4em;
             width: 3.8em;
@@ -93,25 +108,23 @@
             background: #037dd8;
             color: white;
         }
-
         .search-button:hover {
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
             cursor: pointer;
         }
-
+        /* 智能提示 */
         .search-list {
             height: 17em;
             text-align: justify;
             margin: 0 auto;
             display: inline-block;
             padding: 0.4em;
-            width: 38.2%;
+            width: 38.2%; /*width: 61.8%;*/
             outline: 0;
             border: 1px solid transparent;
             border-top: 0;
             margin-right: -0.26em;
         }
-
         .search-li {
             padding: 0.1em;
             white-space: nowrap;
@@ -121,20 +134,17 @@
             text-overflow: ellipsis;
             /* 省略号 替代 */
         }
-
         .search-li-hover {
             cursor: pointer;
             background: #037dd8;
             color: #fff;
         }
-
         .search-space {
             padding: 0.1em;
             text-align: right;
             color: transparent;
             /* #037dd8 */
         }
-
         .search-list-button {
             width: 3.88em;
             outline: 0;
@@ -151,44 +161,40 @@
             width: 85%;
             margin: 0 auto;
         }
-
         .engine-often {
             border-bottom: 1px solid #D5D7DF;
         }
-
-        .engine-design {
+        .engine-composite {
             height: 4em;
+            line-height: 4em;
         }
-
         .engine-coding {
             height: 4em;
         }
-
+        /* button */
         engine {
-            width: 8em;
-            height: 2.5em;
+            width:  150px;
+            height: 150px;
+            line-height: 150px;
             display: inline-block;
-            margin: 1em;
-            padding: 0.5em;
+            margin:  0.5em;
             /* 禁止 换行 */
             white-space: nowrap;
             /* 隐藏 超出部分 */
             overflow: hidden;
             /* 省略号 替代 */
             text-overflow: ellipsis;
-            box-sizing: border-box;
-            box-shadow: 0 0.1em 0.2em rgba(15, 32, 66, .05);
+            /*box-sizing: border-box;*/
+            /*box-shadow: 0 0.1em 0.2em rgba(15, 32, 66, .05);*/
             cursor: pointer;
             border: 2px solid transparent;
-            border-radius: 2px;
+            border-radius: 50%;
         }
-
         engine:hover {
-            border: 2px solid #389CFF;
-            border-radius: 2px;
+            /*border: 2px solid #389CFF;*/
+            border-radius: 50%;
             background: #F5F6F9;
         }
-
         engine:active {
             border-color: #F5F6F9;
         }
@@ -203,11 +209,11 @@
                 <i id="id-top-button" class="fa fa-angle-double-down fa-lg"></i>
             </div>
         </div>
-        </div>
-        <span id="id-top" style='display:block; height:3em;'></span>
+    </div>
     <!-- 搜索 -->
     <div class="search">
         <div class="search-center">
+            <logo></logo>
             <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
             <button class="search-button">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -223,14 +229,11 @@
     </div>
     <!-- 引擎 -->
     <div class="engine">
+        <span style='display:block; height:4em'></span>
         <div class="engine-often">
-
         </div>
-        <div class="engine-design">
-
-        </div>
-        <div class="engine-coding">
-            正在施工
+        <div class="engine-composite">
+            综合　／　编程　／　认知　／　音乐　／　电影　／　新闻　／　购物　／　地图　／　旅行
         </div>
     </div>
     <!-- 代码 -->
