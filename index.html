@@ -1,243 +1,364 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
+<!-- 前情提要 -->
 <head>
     <meta charset="utf-8">
-    <title>海纳百川 - 大海</title>
+    <title>简历Resume - 大海</title>
+    <link rel="icon" href="imgs/Favicon.ico">
+    <!-- 加载 CSS 框架 -->
+    <link rel="stylesheet" href="ku/Pure-css/pure-min.css">
+    <link rel="stylesheet" href="ku/Pure-mobile.css">
+    <link rel="stylesheet" href="ku/Font-Awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="ku/Animate.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="ku/Font-Awesome/css/font-awesome.min.css" rel="stylesheet">
-    <link href="ku/iconFont/iconfont.css" rel="stylesheet">
-    <!-- 全局 -->
+    <!-- 主要样式 -->
     <style>
-        /* 字体栈 */
-        html,button,input,select,textarea,
+        a:link {
+            color: rgb(51, 103, 214);
+            text-decoration: none;
+        }
+        /*去下划线*/
+
+        a:visited {
+            color: rgb(51, 103, 214);
+        }
+
+        a:hover {
+            cursor: pointer;
+        }
+        /*鼠标样式*/
+
+        a:active {
+            color: rgb( 5, 37, 119);
+        }
+
+        html,
+        button,
+        input,
+        select,
+        textarea,
         .pure-g [class *="pure-u"] {
-            color: #333;
-            font-size: 1.17em;
+            /* 字体栈写在这: */
             font-family: Roboto, 'Segoe UI', Arial, 'Microsoft Yahei', sans-serif;
         }
-        /* 字体库 */
-        .iconfont {
-            font-size: 5.5em;
-            color: #E6E7EC;
-        }
-        .icon-baidu  { color: rgb(35,25,220); }
-        .icon-weixin { color: rgb(0,188,12); }
-        .icon-zhihu  { color: rgb(15,136,235); }
-        .icon-bing   { color: rgb(255,185,0); }
-        .icon-sogou  { color: #fd6853;}
-        body {
-            margin: 0 auto;
+
+        html {
             text-align: center;
+            background: rgb(241, 241, 241);
+            color: rgb(104, 113, 116);
+            font-weight: 500;
+            font-size: 1.17em;
         }
-        </style>
-    <!-- 导航 -->
-    <style>
+
         .top {
-            display: none;
+            z-index: 2;
             position: fixed;
             width: 100%;
             height: 3em;
-            z-index: 1;
-            background: #F5F6F9;
-            border-bottom: 1px solid #E6E7EC;
-            cursor: pointer;
+            background: black;
+            opacity: 0.86;
+            font-weight: 300;
+            color: rgb(241, 241, 241);
         }
-        .top-center {
-            position: relative;
-            top: 1.5em;
-            transform: translateY(-50%);
-        }
-        </style>
-    <!-- 搜索 -->
-    <style>
-        logo {
-            display: block;
-            margin: 0 auto 2em;
-            width:  8em;
-            height: 8em;
-            line-height: 8em;
 
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            cursor: pointer;
+        a.top-a:link {
+            color: white;
+            text-decoration: none;
+        }
+        /*去下划线*/
 
-            border: 1px solid #E6E7EC;
-            border-radius: 50%;
-        }
-        .search {
-            z-index: -1;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-        }
-        .search-center {
-            position: relative;
-            top: 61.8%;
-            transform: translateY(-61.8%);
-        }
-        /* 输入框 */
-        .search-input {
-            margin-right: -0.26em;
-            padding: 0.4em;
-            width: 38.2%;  /*width: 61.8%;*/
-            border: 1px solid rgba(0, 0, 0, 0.25);
-            border-top-left-radius: 2px;
-            border-top-right-radius: 0;
-            border-bottom-right-radius: 0;
-            border-bottom-left-radius: 2px;
-            outline: 0;
-        }
-        .search-input:hover {
-            border: 1px solid rgba(0, 0, 0, 0.4);
-        }
-        .search-input:focus {
-            border: 1px solid #037dd8;
-        }
-        .search-button {
-            padding: 0.4em;
-            width: 3.8em;
-            border: 1px solid #037dd8;
-            border-top-left-radius: 0;
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
-            border-bottom-left-radius: 0;
-            outline: 0;
-            background: #037dd8;
+        a.top-a:visited {
             color: white;
         }
-        .search-button:hover {
-            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
-            cursor: pointer;
+
+        a.top-a:active {
+            color: rgb( 175, 175, 175);
         }
-        /* 智能提示 */
-        .search-list {
-            height: 17em;
+
+        .top-center {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: auto;
+        }
+        /* 背景 */
+
+        .cont-background {
+            background: url('imgs/104.Matrix.png') no-repeat top;
+            background-size: 457px;
+        }
+        /* 评论 */
+
+        #id-comment-text,
+        #id-comment-okay,
+        .message {
+            margin: 0.4em auto;
+        }
+
+        .message {
             text-align: justify;
-            margin: 0 auto;
-            display: inline-block;
-            padding: 0.4em;
-            width: 38.2%; /*width: 61.8%;*/
-            outline: 0;
-            border: 1px solid transparent;
-            border-top: 0;
-            margin-right: -0.26em;
         }
-        .search-li {
-            padding: 0.1em;
-            white-space: nowrap;
-            /* 禁止 换行 */
-            overflow: hidden;
-            /* 隐藏 超出部分 */
-            text-overflow: ellipsis;
-            /* 省略号 替代 */
-        }
-        .search-li-hover {
-            cursor: pointer;
-            background: #037dd8;
-            color: #fff;
-        }
-        .search-space {
-            padding: 0.1em;
+
+        #id-comment-okay {
             text-align: right;
-            color: transparent;
-            /* #037dd8 */
+            margin: 0 auto 1.41em auto;
         }
-        .search-list-button {
-            width: 3.88em;
-            outline: 0;
-            background: transparent;
-            /* 透明 */
-            color: transparent;
-            border: 2px solid transparent;
+
+        .message-cont {
+            border: 0;
+            border-top: 0.1em;
+            border-style: solid;
+            padding: 0.5em 0 2em 0;
         }
-        </style>
-    <!-- 引擎 -->
+
+        .message-name {
+            border-top-right-radius: 14px;
+            color: rgb(155, 155, 155);
+            background: rgb(34, 34, 34);
+        }
+    </style>
+    <!-- 自适应 -->
+    <style media="screen">
+        /* 横屏 大于 1000px */
+
+        @media only screen and (min-width: 64em) {
+            .top-center {
+                width: 80%;
+            }
+            .HomeWork,
+            .resume,
+            .resume-contact,
+            #id-comment-text,
+            #id-comment-okay,
+            .message {
+                margin: 0 auto;
+                width: 80%;
+            }
+            .BGM {
+                margin: 0 auto;
+                width: 40%;
+            }
+        }
+        /* 横屏 小于 1000px */
+
+        @media only screen and (max-width: 64em) and (orientation: landscape) {
+            #id-notes,
+            #id-homework {
+                display: none;
+            }
+            #id-home,
+            #id-github,
+            #id-resume {
+                width: 33.3333%;
+            }
+            html {
+                font-size: 110%;
+            }
+            .BGM,
+            .HomeWork,
+            .resume,
+            .resume-contact,
+            #id-comment-text,
+            #id-comment-okay,
+            .message {
+                margin: 0 auto;
+                width: 95%;
+            }
+        }
+        /* 竖屏 小于 1000px */
+
+        @media only screen and (max-width: 64em) and (orientation: portrait) {
+            #id-notes,
+            #id-homework {
+                display: none;
+            }
+            #id-home,
+            #id-github,
+            #id-resume {
+                width: 33.3333%;
+            }
+            html {
+                font-size: 110%;
+            }
+            .BGM,
+            .HomeWork,
+            .resume,
+            .resume-contact,
+            #id-comment-text,
+            #id-comment-okay,
+            .message {
+                margin: 0 auto;
+                width: 95%;
+            }
+        }
+    </style>
+    <!-- 简历样式 -->
     <style>
-        .engine {
-            display: none;
-            width: 85%;
+        .pure-form-stacked input[type="text"],
+        .pure-form-stacked input[type="password"],
+        .pure-form-stacked textarea {
             margin: 0 auto;
+            text-align: center;
         }
-        .engine-often {
-            border-bottom: 1px solid #D5D7DF;
+
+        .resume {
+            text-align: justify;
+            font-weight: 500;
+            color: black;
         }
-        .engine-composite {
-            height: 4em;
-            line-height: 4em;
-        }
-        .engine-coding {
-            height: 4em;
-        }
-        /* button */
-        engine {
-            width:  150px;
-            height: 150px;
-            line-height: 150px;
-            display: inline-block;
-            margin:  0.5em;
-            /* 禁止 换行 */
-            white-space: nowrap;
-            /* 隐藏 超出部分 */
-            overflow: hidden;
-            /* 省略号 替代 */
-            text-overflow: ellipsis;
-            /*box-sizing: border-box;*/
-            /*box-shadow: 0 0.1em 0.2em rgba(15, 32, 66, .05);*/
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 50%;
-        }
-        engine:hover {
-            /*border: 2px solid #389CFF;*/
-            border-radius: 50%;
-            background: #F5F6F9;
-        }
-        engine:active {
-            border-color: #F5F6F9;
-        }
-        </style>
+    </style>
 </head>
+<!-- 主要内容 -->
 <body>
-    <div id="id-Sug"></div>
     <!-- 导航 -->
     <div class="top">
-        <div class="top-center">
-            <div class="top-girds">
-                <i id="id-top-button" class="fa fa-angle-double-down fa-lg"></i>
+        <div class="top-center pure-g">
+            <a id="id-home" class="top-a pure-u-1-5">
+                <i id="id-player" class="fa fa-play"></i></a>
+            <a id="id-resume" class="top-a pure-u-1-5" href="#Resume">简历</a>
+            <a id="id-notes" class="top-a pure-u-1-5" href="#Notes">笔记</a>
+            <a id="id-homework" class="top-a pure-u-1-5" href="#HomeWork">作品</a>
+            <a id="id-github" class="top-a pure-u-1-5" href="#GitHub">GitHub</a>
+        </div>
+    </div>
+    <span style="display: block; height: 3em;"></span>
+    <!-- 内容 -->
+    <div class="cont">
+        <div class="cont-background" style="height: 457px;"></div>
+        <a name="Resume"></a>
+        <h1 class="animated zoomInRight">JavaScript前端工程师，在此。</h1>
+        <!-- 联系方式 -->
+        <form class="resume-contact pure-form pure-form-stacked">
+            <fieldset>
+                <legend>汪洋</legend>
+                <div class="pure-g ">
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <label><i class="fa fa-phone fa-2x" aria-hidden="true"></i></label>
+                        <input class="input-mi" value="+86 189-6670-2120" type="text" readonly>
+                    </div>
+
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <label><i class="fa fa-weixin fa-2x" aria-hidden="true"></i></label>
+                        <input class="input-mi" value="iwangyang" type="password" readonly>
+                    </div>
+
+                    <div class="pure-u-1 pure-u-md-1-3">
+                        <label><i class="fa fa-envelope fa-2x" aria-hidden="true"></i></label>
+                        <input class="input-mi" value="c@bigc.cc" type="text" readonly>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+        <!-- 简历 -->
+        <div class="resume pure-g">
+            <!-- 左 侧边栏 -->
+            <div class="resume-left pure-u-1 pure-u-lg-2-5">
+                <hr>
+                <h2><i class="fa fa-university" aria-hidden="true"></i> 毕业院校
+                </h2>2011 ~ 2015 西安美术学院 本科
+                <hr>
+                <h2><i class="fa fa-wrench" aria-hidden="true"></i> 项目与工作经验
+                </h2>
+                <p>使用 WordPress 搭架个人网站 并多年维护</p>
+                <a name="Notes"></a>
+                <a target="_blank" href="http://bigc.cc"><i class="fa fa-wordpress fa-2x pull-left"></i>
+                            http://bigc.cc<br>Version 4.5.4</a>
+
+                <p>使用 CMD MarkDown 编写学习手册 随时更新 急速查阅</p>
+                <a name="GitHub"></a>
+                <a target="_blank" href="https://www.zybuluo.com/iwangyang/note/519509"><i class="fa fa-edit fa-2x pull-left"></i>
+                            萧瓜 HTML CSS Javascript<br>Python 3 小甲鱼 笔记</a>
+
+                <p>使用 GitHub 分布式版本存储 管理项目作业</p>
+                <a target="_blank" href="https://github.com/BIGC-HUB"><i class="fa fa-github-alt fa-2x pull-left"></i>
+                            https://github.com/<br>BIGC-HUB</a>
+
+                <p>
+                    <li>实现 JD.com <a target="_blank" href="ku/HomeWork/No.14 HomeWork.html">首页轮播图</a></li>
+                </p>
+                <p>
+                    <li>实现 JS弹窗&nbsp; <a id="id-js-tan" href="#">全屏密码锁定</a></li>
+                </p>
+                <p>
+                    <li>实现 Weibo 字符限制评论框</li>
+                </p>
+                <p>
+                    <li>制作 TodoList 全功能</li>
+                </p>
+                <p>
+                    <li>制作 Chrome 参考线 插件 Ctrl + M</li>
+                </p>
+                <p>
+                    <li>设计 BIGC Player 播放器</li>
+                </p>
+                <p>
+                    <li>纯 JavaScript 编写本页</li>
+                </p>
+                <p></p>
+                <hr>
+                <p>2015<br> 杭州印象国际艺术教育 <b>教务老师</b></p>
+                <p>2014<br> 三亚雍和国际青年旅舍 <b>义工</b></p>
+                <p>2013<br> 西安锁艺人安防设备有限公司 <b>网页美工</b></p>
+                <p>2011<br> 西安恒阳电子 <b>销售</b></p>
+            </div>
+            <!-- 右 侧边栏 -->
+            <div class="resume-right pure-u-1 pure-u-lg-3-5">
+                <hr>
+                <h2><i class="fa fa-cog fa-spin fa-3x fa-fw" aria-hidden="true"></i> 技能
+                </h2>
+                <dl>
+                    <!-- 技能 -->
+                    <dt><h3>HTML<i class="fa fa-html5" aria-hidden="true"></i> &#38; CSS3</h3></dt>
+                    <p>　　能够编写语义化 HTML，模块化CSS，并实现复杂的布局与功能<br> 　　开发符合 W3C 标准的页面，熟练使用 jQuery 框架<br> 　　有良好的编码习惯
+                    </p>
+                    <dt><h3>JavaScript <i class="fa fa-plane" aria-hidden="true"></i></h3></dt>
+                    <dd>
+                        <p>熟练掌握程序调试的方法，能快速定位分析解决错误<br>
+                        习惯注释 &#38; 缩进，增强代码可读性</p>
+                    </dd>
+                    <dd>
+                        <p>充分利用盒模型、栅格、浮动定位、@media 设计 <b>响应式布局</b><br><br> 认真学习 原生DOM API 事件绑定 事件委托 事件冒泡 / 捕获<br> 并且运用 原生UI组件和 JSON 数据格式对 Ajax 接口进行封装，定制了 Time 时间函数 等工具<br><br> 熟练应用处理各种 对象 集合 数组 字符串 编码 RegExp 正则表达式 BOM 并封装成函数 解决实际问题<br> 主要依靠 <b>扎实的基本功</b></p>
+                    </dd>
+                    <dt><h3><i class="fa fa-flask" aria-hidden="true"></i> 框架  &#38; 工具</h3></dt>
+                    <dd>
+                        <p>善于发现各种库 / 框架<br> 熟练运用 jQuery 进行事件处理 定制 class 属性操作 Ajax 请求<br> 运用 Font Awesome 实现图标和动态、叠加效果<br>使用 NPM 管理和安装库，常用 Purecss 和 Bootstrap 布局</p>
+                    </dd>
+                    <dt><h3><i class="fa fa-refresh" aria-hidden="true"></i> 后端语言</h3></dt>
+                    <dd>
+                        <p>会用 Node.js 开发分离浏览器的 JavaScript 程序，并用 Express 框架实现本地数据库的 TodoList</p>
+                        <p>掌握 Python 基础。会用@decorator 装饰器 pyinstaller 打包可执行文件 beautifulsoup4 网页解析 easygui 图形用户界面 等组件<br> 使用 PIP 或 Easy Install 管理模块<br> 了解 HTTP（1.x / 2）、 TCP/IP、 WebSocket 等协议<br> 实现 有道翻译API、TS 视频文件下载/合并、网络爬虫自动抓取图片、网页编码 \ 转译等项目<br>
+                        </p>
+                    </dd>
+                    <dt><h3>新技术 &#38; 其他</h3></dt>
+                    <dd>
+                        <p>了解 ES6 学会使用 集合、Map、const、模板字符串、默认参数等 <br> 运用 HTML5 语义化标签，使用 LocalStorage、媒体查询，了解 Canvas 绘图 Hybrid App 混合开发原理<br> 运用 CSS3 新特性对布局、字体、背景、颜色实现更加精准的掌控<br></p>
+                        <p>日常会使用 Git 分布式控制版本 Atom 编译器 MarkDown 记录笔记<br> 精通 Adobe illustrator / Photoshop</p>
+                    </dd>
+                </dl>
+                <hr>
             </div>
         </div>
     </div>
-    <!-- 搜索 -->
-    <div class="search">
-        <div class="search-center">
-            <logo></logo>
-            <input data-id="0" class="search-input" type="text" placeholder="" maxlength="100">
-            <button class="search-button">
-                    <i class="fa fa-search" aria-hidden="true"></i>
-                </button>
-            <div></div>
-            <div class="search-list">
-                <div class="search-space"><i class="fa fa-angle-double-up fa-lg" aria-hidden="true"></i></div>
-            </div>
-            <button class="search-list-button">
-                    <i class="fa fa-angle-double-down fa-lg" aria-hidden="true"></i>
-                </button>
-        </div>
+    <div class="HomeWork"><a name="HomeWork"></a>
     </div>
-    <!-- 引擎 -->
-    <div class="engine">
-        <span style='display:block; height:4em'></span>
-        <div class="engine-often">
-        </div>
-        <div class="engine-composite">
-            综合　／　编程　／　认知　／　音乐　／　电影　／　新闻　／　购物　／　地图　／　旅行
-        </div>
-    </div>
-    <!-- 代码 -->
-    <script src="ku/jQuery.js" charset="utf-8"></script>
-    <script src="debug.js" charset="utf-8"></script>
+    <h3>感谢花时间阅读我的简历，期待与您共事。</h3>
+    <!-- 定制 log / 代码 debug -->
+    <script>
+        var log = function() {
+                console.log.apply(console, arguments)
+            }
+            //定义自己的log很重要 enSure增强进化版 穿衣服
+        var ensure = function(def, result, message) {
+            if (JSON.stringify(def) !== JSON.stringify(result)) {
+                log('异常————————————>', message)
+                log('def    = "' + def + '"\nresult = "' + result + '"')
+            }
+        }
+    </script>
+    <script src="ku/jQuery.js"></script>
+    <script src="ku/jQuery-ui.js"></script>
+    <script src="resume.js"></script>
+    <script src="ku/HomeWork/No.08 HomeWork 18-19.js"></script>
+    <script src="ku/HomeWork/No.08 HomeWork 17.js"></script>
 </body>
 </html>
